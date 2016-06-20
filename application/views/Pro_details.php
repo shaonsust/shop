@@ -17,6 +17,10 @@ include 'header.php';
 							href="<?php echo base_url() . 'super_admin_c/upload_pick_list/' . $pid; ?>"> <span
 							class="fa fa-plus"></span> &nbsp; Upload Pick List
 						</a>
+						<a class="btn btn-default pull-right "
+						   href="<?php echo base_url() . 'download_excel_file/download_header/' . $pid; ?>"> <span
+								class="fa fa-plus"></span> &nbsp; Download Sample File
+						</a>
 					
                     <a class="btn btn-default pull-right "
 							href="<?php echo base_url();?>super_admin_c/newbin"> <span
