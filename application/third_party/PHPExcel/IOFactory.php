@@ -22,7 +22,7 @@
  * @package    PHPExcel
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    1.8.0, 2014-03-02
+ * @version    ##VERSION##, ##DATE##
  */
 
 
@@ -78,10 +78,6 @@ class PHPExcel_IOFactory
      *	Private constructor for PHPExcel_IOFactory
      */
     private function __construct() { }
-    
-     public function read_from1(){
-            echo "reading from phpexcel file and its working just fine";
-        }
 
     /**
      * Get search locations

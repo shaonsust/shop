@@ -7,7 +7,7 @@ class Download_excel_file extends CI_Controller
         $fields = $this->Download_excel_model->table_field_name('pick_list');
 
         // Starting the PHPExcel library
-        $this->load->library('excel');
+        $this->load->library('Excel');
         $objPHPExcel = new PHPExcel();
         $objPHPExcel->getProperties()->setTitle("export")->setDescription("none");
         $objPHPExcel->setActiveSheetIndex(0);
@@ -25,7 +25,7 @@ class Download_excel_file extends CI_Controller
         $objPHPExcel->setActiveSheetIndex(0);
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
         // Sending headers to force the user to download the file
-        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename="Sample_'.date('dMy').'.xlsx"');
         header('Cache-Control: max-age=0');
         $objWriter->save('php://output');
