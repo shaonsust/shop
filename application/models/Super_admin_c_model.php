@@ -229,11 +229,13 @@ class Super_admin_c_model extends CI_Model {
         $this->db->where('id', $id);
         $this->db->update($table, $data);
     }
-    public function inactive_project($table,$id,$data){
+    public function inactive_project($table,$id,$data)
+    {
         $this->db->where('id', $id);
         $this->db->update($table, $data);
     }
-    public function change_pro_by_pro_id($table,$id){
+    public function change_pro_by_pro_id($table,$id)
+    {
           $this->db->select('*')
                 ->from($table)
                 ->where('id', $id);

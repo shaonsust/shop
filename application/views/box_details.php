@@ -19,7 +19,11 @@ include 'header.php';
 						<a class="btn btn-default pull-right "
 							href="<?php echo base_url() . 'super_admin_c/box_list/' . $pid; ?>"> <span
 							class="fa fa-plus"></span> &nbsp; View Box List
-						</a>                 
+						</a>
+						<a class="btn btn-default pull-right "
+						   href="<?php echo base_url() . 'report_c/project_report/' . $pid; ?>"> <span
+								class="fa fa-plus"></span> &nbsp; Report
+						</a>
                     <div class="panel-body"></div>
 						<div class="box-body">
 							<div class="table-responsive" style="width: 100% !important">
