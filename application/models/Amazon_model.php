@@ -129,4 +129,9 @@ class Amazon_model extends CI_Model
         $result = $this->db->query("update pick_list set status = 1 where barcode = '$barcode' and spid = '$spid'");
     }
 
+    public function amazon_full_box_report($pid)
+    {
+        $result = $this->db->query("select a.sku, b.box_name, b.barcode, count(b.barcode) as cbarcode from pick_list a inner join box_report b on a.id = b.pl_id where a.pid = '$pid' group by b.barcode, b.box_name order by b.box_name;");
+        return $result->result();
+    }
 }

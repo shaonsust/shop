@@ -352,7 +352,7 @@ class Amazon_c extends CI_Controller
 //     	print_r($dat);
     }
 
-    public function amazon_full_project_report($pid, $flag = 0)
+    public function amazon_full_item_report($pid, $flag = 0)
     {
         $data['pid'] = $pid;
         $this->load->model('Amazon_model');
@@ -360,6 +360,16 @@ class Amazon_c extends CI_Controller
         $data['list'] = $this->Amazon_model->amazon_full_report($pid);
         $data['flag'] = $flag;
         $this->load->view("Amazon_full_report_v", $data);
+    }
+
+    public function amazon_full_box_report($pid, $flag = 0)
+    {
+        $data['pid'] = $pid;
+        $this->load->model('Amazon_model');
+        $data['sub_project'] = $this->Amazon_model->select_all('sub_project', $pid);
+        $data['report'] = $this->Amazon_model->amazon_full_box_report($pid);
+        $data['flag'] = $flag;
+        $this->load->view("Amazon_full_box_report", $data);
     }
 
     public function sample_amazon_excel()

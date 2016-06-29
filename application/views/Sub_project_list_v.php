@@ -32,8 +32,11 @@ include 'header.php';
 <!--                           href="--><?php //echo base_url() . 'super_admin_c/upload_pick_list/'?><!--"> <span-->
 <!--                                class=""></span> &nbsp; Amazon Project-->
 <!--                        </a>-->
-                        <a class="btn btn-default pull-right" href="<?php echo base_url() . 'amazon_c/amazon_full_project_report/'. $pid?>">
-                            <span class=""></span> &nbsp; Full Project Report
+                        <a class="btn btn-default pull-right" href="<?php echo base_url() . 'amazon_c/amazon_full_item_report/'. $pid?>">
+                            <span class=""></span> &nbsp; Full Item Report
+                        </a>
+                        <a class="btn btn-default pull-right" href="<?php echo base_url() . 'amazon_c/amazon_full_box_report/'. $pid?>">
+                            <span class=""></span> &nbsp; Full Box Report
                         </a>
                         <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#amazon">Amazon Project</button>
                         <div class="panel-body">

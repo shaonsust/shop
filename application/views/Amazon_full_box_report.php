@@ -11,7 +11,7 @@ include 'header.php';
                 <div class="box-header">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h4 class="box-title text-center">Full Amazon Item Report</h4>
+                            <h4 class="box-title text-center">Full Amazon Box Report</h4>
                         </div>
                         <!--                        <a class="btn btn-default pull-right"-->
                         <!--                           href="--><?php //echo base_url();?><!--super_admin_c/create_projects"> <span-->
@@ -70,28 +70,28 @@ include 'header.php';
                             <!--*******************************************Sub project Table Finished Here************************************************-->
                             <br>
 
-                            <!--*******************************************Amazon Full project Report Start Here************************************************-->
+                            <!--*******************************************Amazon Full Box project Report Start Here************************************************-->
                             <div class="table-responsive" style="width: 100% !important">
                                 <table id="tb2" class="table table-bordered dataTable "
                                        cellspacing="0" width="100%">
                                     <thead>
                                     <tr>
-                                        <th width="40%">SKU</th>
+                                        <th width="40%">Box Name</th>
+                                        <th width="20%">SKU</th>
                                         <th width="20%">Barcode</th>
-                                        <th width="20%">Scanned</th>
-                                        <th width="20%">Quantity</th>
+                                        <th width="20%">Quantity Scanned</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <?php
-                                    foreach ( $list as $c )
+                                    foreach ( $report as $c )
                                     {
                                         ?>
                                         <tr>
+                                            <td><?php echo $c->box_name; ?></td>
                                             <td><?php echo $c->sku; ?></td>
                                             <td><?php echo $c->barcode; ?></td>
-                                            <td><?php echo $c->scanned; ?></td>
-                                            <td><?php echo $c->quantity;?></td>
+                                            <td><?php echo $c->cbarcode;?></td>
                                         </tr>
                                         <?php
                                     }
