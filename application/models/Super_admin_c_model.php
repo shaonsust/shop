@@ -65,6 +65,13 @@ class Super_admin_c_model extends CI_Model {
     	$query = $this->db->get();
     	return $query->result_array();
     }
+
+    public function project_filter($status, $limit = 25, $start = 0)
+    {
+        $this->db->select()->from('projects')->where('status', $status)->order_by('created_date', 'dsc')->limit($limit, $start);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
     
     public function insert_pick_list($table,$data)
     {
@@ -97,9 +104,9 @@ class Super_admin_c_model extends CI_Model {
     	return $query->row();
     }
     
-    public function update($pid)
+    public function update($pid, $status)
     {
-    	$data['pick_list'] = 1;
+    	$data['pick_list'] = $status;
     	$this->db->where('id', $pid);
     	$this->db->update('projects', $data);
     }
@@ -255,9 +262,9 @@ class Super_admin_c_model extends CI_Model {
     	$this->db->query("update box set scanned = scanned + 1 where box_id = '$box_id'");
     }
     
-    function update_pick($barcode)
+    function update_pick($barcode, $pid)
     {
-    	$this->db->query("update pick_list set qty_scaned = qty_scaned + 1 where barcode = '$barcode'");
+    	$this->db->query("update pick_list set qty_scaned = qty_scaned + 1 where barcode = '$barcode' and pid = '$pid'");
     }
     
     function picklist($barcode, $pid)
@@ -305,12 +312,15 @@ class Super_admin_c_model extends CI_Model {
     	$result = $this->db->query("select box_name, barcode, count(barcode) as cbarcode from box_report where pid = '$pid' and box_id = '$bid' group by barcode");
     	return $result->result_array();
     }
-    
+
     public function box_report1($pid)
     {
-    	$result = $this->db->query("select count(distinct barcode) as dtype, box_name, count(barcode) as scanned, pid, box_id from box_report where pid = '$pid' group by box_name");
-    	return $result->result_array();
+        $result = $this->db->query("select count(distinct b.barcode) as dtype, a.box_name, scanned, a.pid, a.box_id 
+                                    from box a left join box_report b on a.box_id = b.box_id 
+                                    where a.pid = '$pid' group by box_name");
+        return $result->result_array();
     }
     
 }
+
 

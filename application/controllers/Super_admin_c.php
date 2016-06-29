@@ -18,12 +18,6 @@ class Super_admin_c extends CI_Controller {
     public function index() {
         $this->load->view('Home');
     }
-    
-    public function testing()
-    {
-    	echo testing;
-    }
-    
     public function projects($start=0, $fp = 1) 
     {
         $this->load->model('Super_admin_c_model');
@@ -48,6 +42,7 @@ class Super_admin_c extends CI_Controller {
         	$config['per_page'] = 10;
         	$data['project_no'] = $config['total_rows'];
         	$data ['projects'] = $this->Super_admin_c_model->project_no(0, $config['per_page'], $start);
+            $data ['projects1'] = $this->Super_admin_c_model->project_filter(0, $config['per_page'], $start);
         }
         else
         {
@@ -55,6 +50,7 @@ class Super_admin_c extends CI_Controller {
         	$config['per_page'] = 10;
         	$data['project_no'] = $config['total_rows'];
         	$data ['projects'] = $this->Super_admin_c_model->project_no(1, $config['per_page'], $start);
+            $data ['projects1'] = $this->Super_admin_c_model->project_filter(1, $config['per_page'], $start);
         }
         
         //config for bootstrap pagination class integration
@@ -82,12 +78,10 @@ class Super_admin_c extends CI_Controller {
         //die();
         $this->load->view('Projects',$data);
     }
-    
     public function create_projects() 
     {
         $this->load->view('Create_projects');
     }
-    
     public function project_calculation() 
     {
         //die("hello");
@@ -104,20 +98,22 @@ class Super_admin_c extends CI_Controller {
             $sdata['message'] = "New Project has been added Successfully";
             $this->session->set_userdata($sdata);
             $this->session->set_userdata('project_id', $project_id);
-            $this->projects();
-//             $this->newbin();
+//            $this->projects();
+//            $this->show_details($project_id);
+             $this->newbin();
 // 			redirect('super_admin_c/newbin');
         } else if (isset($project_id) && $project_id == 0) {
             $sdata['message'] = "The Project name you entered already exists in the database. Please insert a new Project name.";
             $this->session->set_userdata($sdata);
-            redirect('super_admin_c/create_projects/');
+//            redirect('super_admin_c/create_projects/');
+            $this->projects();
         } else {
             $sdata['message'] = "Something went wrong while adding new bin. Please try again.";
             $this->session->set_userdata($sdata);
-            redirect('super_admin_c/create_projects/');
+//            redirect('super_admin_c/create_projects/');
+            $this->projects();
         }
-    }    
-    
+    }
     public function show_details($id, $start=0) 
     {
         $data ['details'] = $this->Super_admin_c_model->show_details('projects', $id);
@@ -172,7 +168,7 @@ class Super_admin_c extends CI_Controller {
         	$this->load->view('Pro_details', $data);
         }
     }
-       public function show_bin_details($id, $pro_status, $start = 0) 
+    public function show_bin_details($id, $pro_status, $start = 0)
        {
         $this->load->model('Super_admin_c_model');
         $data ['details'] = $this->Super_admin_c_model->show_details('projects', $pro_status);
@@ -224,7 +220,7 @@ class Super_admin_c extends CI_Controller {
         $data ['msg'] = "";
         $this->load->view('Edit_pro', $data);
     }
-        public function update_projects($id) 
+    public function update_projects($id)
         {
         if ($_POST) 
         {
@@ -248,14 +244,13 @@ class Super_admin_c extends CI_Controller {
         }
         
     }
-    
     public function edit_bin($bin_id) {
         $this->load->model('Super_admin_c_model');
         $data ['bin'] = $this->Super_admin_c_model->edit_bin_by_bin_id('bin', $bin_id);
         $data ['msg'] = "";
         $this->load->view('Edit_bin', $data);
     }
-            public function update_bin($bin_id) {
+    public function update_bin($bin_id) {
         
         if ($_POST) {
             $data ['bin_number'] = $this->input->post('bin_number');
@@ -284,7 +279,7 @@ class Super_admin_c extends CI_Controller {
         redirect('Super_admin_c/projects');
         //die($id);
     }
-      public function delete_bin($bin_id) {
+    public function delete_bin($bin_id) {
         $this->load->model('Super_admin_c_model');
         $id=$this->Super_admin_c_model->select_project_id_by_bin_id('bin', $bin_id);
            /* echo '<pre>';
@@ -329,7 +324,6 @@ class Super_admin_c extends CI_Controller {
             
         }
     }
-
     public function item_calculation() {
         $cdata['bin_id'] = $this->input->post('bin_id');
         $cdata['item_number'] = $this->input->post('item');
@@ -341,12 +335,10 @@ class Super_admin_c extends CI_Controller {
         $item_id = $this->bin_model->insert_item($cdata);
         echo $item_id;
     }
-
     public function newbin() {
         
         $this->load->view('Newbin');
     }
-
     public function item($bin_id, $bin_number) {
         $this->load->model('bin_model');
         $data['bin_id'] = $bin_id;
@@ -357,8 +349,6 @@ class Super_admin_c extends CI_Controller {
     }
     public function Finish_Start_new_project($bin_id){
         $id=$this->session->userdata('project_id');
-//         echo $id;
-//         die();
         $this->load->model('Super_admin_c_model');
         $data['status']=0;
         $this->Super_admin_c_model->inactive_project('projects',$id,$data);
@@ -377,18 +367,13 @@ class Super_admin_c extends CI_Controller {
           else {
               $data['status']=1;
             $this->Super_admin_c_model->active_project('projects',$id,$data);
-          }  
-         /*echo '<pre>';
-          print_r($pro_status);
-            die();*/
+          }
         $this->projects();
-        
     }
-    
-    function read_excel($pid, $path_parts)
+    function read_excel($pid, $path_parts, $status)
     {
 
-    		$file = $path_parts ['dirname'] . '/' . $path_parts ['basename'];
+    		$file = $path_parts;
     		    		
     		$head [0] = 'pid';
     		$head [1] = 'user_id';
@@ -398,17 +383,10 @@ class Super_admin_c extends CI_Controller {
     		$head [5] = 'created_date';
     		$head [6] = 'updated_date';
     		$head [7] = 'status';
-    		$head [8] = 'extra';    
-//     		$head [9] = 'id';
+    		$head [8] = 'extra';
     
     	//load the excel library
     	$this->load->library('excel');
-    	
-    	//read file from path
-    	//$objPHPExcel = PHPExcel_IOFactory::load($file);
-    	//var_dump($objPHPExcel);
-    	//exit();
-    	
     	try {
     		$objPHPExcel = PHPExcel_IOFactory::load($file);
     	} catch(Exception $e) {
@@ -447,19 +425,17 @@ class Super_admin_c extends CI_Controller {
 //     	}
     }
     
-    $this->Super_admin_c_model->update($pid);
+    $this->Super_admin_c_model->update($pid, $status);
     $dat['list'] = $this->Super_admin_c_model->select_list($pid);
     //$this->load->view('Pick_list', $dat);
     $this->pick_list($pid);
   }
-    
     function pick_list($pid)
     {
     	$dat['list'] = $this->Super_admin_c_model->select_list($pid);
     	$dat['pid'] = $pid;
     	$this->load->view('Pick_list', $dat);
     }
-    
     function box_list($pid)
     {
     	$dat['list'] = $this->Super_admin_c_model->box_report1($pid);
@@ -471,14 +447,12 @@ class Super_admin_c extends CI_Controller {
 //     	$dat['barcode'] = $barcode;
     	$this->load->view('Box_list', $dat);
     }
-    
     function create_box($pid, $barcode)
     {
     	$data['pid'] = $pid;
     	$data['barcode'] = $barcode;
     	$this->load->view('Create_box', $data);
     }
-    
     function box_calculation($pid)
     {
     	$data['pid'] = $pid;
@@ -507,7 +481,6 @@ class Super_admin_c extends CI_Controller {
     	}
 //     	$this->box_list($pid, $barcode, 1);
     }
-    
     function box_calculation1($pid, $bid)
     {
     	$dat['pid'] = $pid;
@@ -518,7 +491,6 @@ class Super_admin_c extends CI_Controller {
     	$this->load->view('box_pick_list', $dat);
     	//     	$this->box_list($pid, $barcode, 1);
     }
-    
     function barcode_scan($pid, $barcode, $box_id)
     {
     	$data['pid'] = $pid;
@@ -530,7 +502,6 @@ class Super_admin_c extends CI_Controller {
 //     	die();
     	$this->load->view('Barcode_scan', $data);
     }
-    
     function barcode_calculation($pid, $bid)
     {
     	$cdata['pid'] = $pid;
@@ -543,16 +514,16 @@ class Super_admin_c extends CI_Controller {
     	$cdata['status'] = 1;
     	
     	$this->load->model('Super_admin_c_model');
-    	$val = $this->Super_admin_c_model->picklist($cdata['barcode'], $pid);
+    	$val5 = $this->Super_admin_c_model->picklist($cdata['barcode'], $pid);
     	$dat['box_list'] = $this->Super_admin_c_model->select_box($pid);
 //      	print_r($val);
 //     	die();
-		if($val)
+		if($val5)
 		{
-	    	if(($val->qty) > ($val->qty_scaned))
+	    	if(($val5->qty) > ($val5->qty_scaned))
 	    	{
 	    		$this->Super_admin_c_model->update_box($bid);
-	    		$this->Super_admin_c_model->update_pick($cdata['barcode']);
+	    		$this->Super_admin_c_model->update_pick($cdata['barcode'], $pid);
 	    		$val = $this->Super_admin_c_model->count_barcode($cdata['barcode'], $cdata['pid']);
 	    		$val1 = $val->qty_scaned;
 	    		$val2 = $val->qty;
@@ -565,6 +536,7 @@ class Super_admin_c extends CI_Controller {
 	    		$dat['msg'] = "Data inserted successfully";
 	    		$dat['bdetails'] = $this->Super_admin_c_model->select_box_id($bid);
 	    		$cdata['box_id'] = $bid;
+                $cdata['pl_id'] = $val5->id;
 	    		$cdata['box_name'] = $dat['bdetails']->box_name;
 	    		$breport = $this->Super_admin_c_model->insert_box_report($cdata);
 	    		$dat['list'] = $this->Super_admin_c_model->select_list($pid);
@@ -593,7 +565,6 @@ class Super_admin_c extends CI_Controller {
 			$this->load->view('box_pick_list', $dat);
 		}
     }
-    
     function select_box_report($pid, $bid)
     {
 //     	echo "working well";
@@ -603,13 +574,12 @@ class Super_admin_c extends CI_Controller {
 //     	echo "<pre>";
 //     	print_r($dat);
     }
-    
-    function upload_pick_list($pid)
+    function upload_pick_list($pid = 0, $flag = 0)
     {
     	$data['pid'] = $pid;
+        $data['flag'] = $flag;
     	$this->load->view('Upload_pick_list', $data);
     }
-    
     function create_csv()
     {
     	$query = $this->db->get('projects');
@@ -660,8 +630,7 @@ class Super_admin_c extends CI_Controller {
     	
     		$objWriter->save('php://output');
     	}
-    	
-    	function check_format($pid)
+    function check_format($pid, $status)
     	{
     		if (isset ( $_FILES ['read']['name'] ) && ! empty ( $_FILES ['read']['name'] )) 
     		{    		    			
@@ -677,6 +646,7 @@ class Super_admin_c extends CI_Controller {
 				
 				$upload=$this->upload->do_upload('read');
 				$images_file = $this->upload->data();
+                $file = $images_file['file_name'];
 	// 			print_r($images_file);
 	// 			exit();
 				if(!$upload)
@@ -687,19 +657,18 @@ class Super_admin_c extends CI_Controller {
 				if ($path_parts['extension'] == "csv") 
 				{ 
 // 					echo "csv";
-					$this->read_csv($pid, $path_parts);
+					$this->read_csv($pid, $file, $status);
 				}
 				else if($path_parts['extension'] == "xlsx" || $path_parts['extension'] == "xls" || $path_parts['extension'] == "ods")
 				{
 // 					echo "xlsx";
-					$this->read_excel($pid, $path_parts);
+					$this->read_excel($pid, $file, $status);
 				}
     		}
     	}
-    	
-    	function read_csv($pid, $path_parts)
+    function read_csv($pid, $path_parts, $status)
     	{
-    		$file = $path_parts ['dirname'] . '/' . $path_parts ['basename'];
+    		$file = $path_parts;
     		$head [0] = 'pid';
     		$head [1] = 'user_id';
     		$head [2] = 'sku';
@@ -738,18 +707,22 @@ class Super_admin_c extends CI_Controller {
     			$this->Super_admin_c_model->insert_pick_list('pick_list',$data);
     		}
     		
-    		$this->Super_admin_c_model->update($pid);
+    		$this->Super_admin_c_model->update($pid, $status);
     		$dat['list'] = $this->Super_admin_c_model->select_list($pid);
     		$dat['pid'] = $pid;
     		$this->load->view('Pick_list', $dat);
 //     	}
     }
-    
     function box_pick($pid)
     {
  		$this->load->model('Super_admin_c_model');
     	$dat['list'] = $this->Super_admin_c_model->select_list($pid);
     	$this->load->view('box_pick_list', $dat);
+    }
+    function test()
+    {
+        $this->load->model('Super_admin_c_model');
+        $this->Super_admin_c_model->box_report('','');
     }
 }
 ?>

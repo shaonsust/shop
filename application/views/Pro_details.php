@@ -13,28 +13,56 @@ include 'header.php';
 						</div>
                     <?php if (($details->status == 1) && ($details->pick_list == 0)) { ?>
                     
-                    <a class="btn btn-default pull-right "
-							href="<?php echo base_url() . 'super_admin_c/upload_pick_list/' . $pid; ?>"> <span
-							class="fa fa-plus"></span> &nbsp; Upload Pick List
-						</a>
-						<a class="btn btn-default pull-right "
-						   href="<?php echo base_url() . 'download_excel_file/download_header/' . $pid; ?>"> <span
-								class="fa fa-plus"></span> &nbsp; Download Sample File
-						</a>
+<!--                    <a class="btn btn-default pull-right "-->
+<!--							href="--><?php //echo base_url() . 'super_admin_c/upload_pick_list/' . $pid . '/' . 1 ?><!--"> <span-->
+<!--							class=""></span> &nbsp; Upload Pick List-->
+<!--						</a>-->
 					
-                    <a class="btn btn-default pull-right "
-							href="<?php echo base_url();?>super_admin_c/newbin"> <span
-							class="fa fa-plus"></span> &nbsp; Add New Bin
-						</a>
+<!--                    <a class="btn btn-default pull-right "-->
+<!--							href="--><?php //echo base_url();?><!--super_admin_c/newbin"> <span-->
+<!--							class=""></span> &nbsp; Add New Bin-->
+<!--						</a>-->
+						<button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#new_bin">Add New Bin</button>
                     <?php }
                     else if(($details->status == 1) && ($details->pick_list == 1))
                     { ?>
                     	<a class="btn btn-default pull-right "
 							href="<?php echo base_url() . 'super_admin_c/pick_list/' . $pid; ?>"> <span
-							class="fa fa-plus"></span> &nbsp; View Pick List
+							class=""></span> &nbsp; View Pick List
 						</a>
                     <?php } 
                     ?>
+						<!--************************************Start New Bin modal***********************************************-->
+						<div class="modal fade" id="new_bin" role="dialog">
+							<div class="modal-dialog">
+								<div class="modal-content" >
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Create New Bin</h4>
+									</div>
+									<div class="modal-body">
+										<!-- <h4 class="modal-title"> -->
+										<form id="newBinForm" method="post" action="<?php echo base_url() ?>super_admin_c/bin_calculation">
+											<label><h3>Please Enter/Scan the BIN Name/Number:</h3></label>
+											<input type="text" class="bin" name="bin" autofocus="true" style="width: 100%; height: 6vh; border-radius: 5px;">
+											<?php
+											$message = $this->session->userdata('message');
+											if(isset($message) && !empty($message))
+											{
+												echo '<p>'.$message.'</p>';
+												$this->session->unset_userdata('message');
+											}
+											?>
+										</form>
+										<br><br>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--************************************Finish New Bin modal***********************************************-->
                     <div class="panel-body"></div>
 						<div class="box-body">
 							<div class="table-responsive" style="width: 100% !important">
@@ -95,4 +123,9 @@ function CheckDelete()
     	 return false;
 	}
 }
+	$(document).ready(function () {
+		$(".bin").change(function (event) {
+			$("#newBinForm").submit();
+		});
+	});
 </script>

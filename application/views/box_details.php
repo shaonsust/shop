@@ -11,19 +11,25 @@ include 'header.php';
 							<h4 class="box-title text-center">Report of &nbsp;&nbsp;<?php echo $details->project_name?> Project
                     </h4>
 						</div>
-                    
-                    	<a class="btn btn-default pull-right "
+
+					<div class="btn-toolbar">
+                    	<a class="btn btn-success pull-right "
 							href="<?php echo base_url() . 'super_admin_c/pick_list/' . $pid; ?>"> <span
-							class="fa fa-plus"></span> &nbsp; View Pick List
+							class=""></span> &nbsp; View Pick List
 						</a>
-						<a class="btn btn-default pull-right "
+						<a class="btn btn-success pull-right "
 							href="<?php echo base_url() . 'super_admin_c/box_list/' . $pid; ?>"> <span
-							class="fa fa-plus"></span> &nbsp; View Box List
+							class=""></span> &nbsp; View Box List
 						</a>
-						<a class="btn btn-default pull-right "
+						<a class="btn btn-primary pull-right "
+						   href="<?php echo base_url() . 'report_c/project_report_excel/' . $pid; ?>"> <span
+								class=""></span> &nbsp; Export
+						</a>
+						<a class="btn btn-primary pull-right "
 						   href="<?php echo base_url() . 'report_c/project_report/' . $pid; ?>"> <span
-								class="fa fa-plus"></span> &nbsp; Report
+								class=""></span> &nbsp; View Report
 						</a>
+					</div>
                     <div class="panel-body"></div>
 						<div class="box-body">
 							<div class="table-responsive" style="width: 100% !important">

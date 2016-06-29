@@ -23,28 +23,26 @@ if (empty($user_id) || empty($user_role))
 
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-2.2.3.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/responsive.bootstrap.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/dataTables.responsive.min.js"></script>
           <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
           <script src="//code.jquery.com/jquery-1.10.2.js"></script>
           <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
           <link rel="stylesheet" href="/resources/demos/style.css">
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
           <script>
-          $(function() {
-            
-            $( "#datepicker" ).datepicker({dateFormat: "yy-mm-dd"});
-            $( "#updatepicker" ).datepicker({dateFormat: "yy-mm-dd"});
-          });
-          $(function() {
-            
-            $( "#updatepicker" ).datepicker({dateFormat: "yy-mm-dd"});
-          });
+//          $(function() {
+//
+//            $( "#datepicker" ).datepicker({dateFormat: "yy-mm-dd"});
+//            $( "#updatepicker" ).datepicker({dateFormat: "yy-mm-dd"});
+//          });
+//          $(function() {
+//
+//            $( "#updatepicker" ).datepicker({dateFormat: "yy-mm-dd"});
+//          });
           </script>
-        
-        
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/dataTables.responsive.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/responsive.bootstrap.min.js"></script>
     </head>
     <body>
 
