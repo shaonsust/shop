@@ -1,6 +1,9 @@
 <?php
 class Amazon_c extends CI_Controller
 {
+    public $aproject = array();
+    public $harr = array();
+
     function check_format()
     {
         if (isset ( $_FILES ['read']['name'] ) && ! empty ( $_FILES ['read']['name'] ))
@@ -28,6 +31,10 @@ class Amazon_c extends CI_Controller
             else if($path_parts['extension'] == "xlsx" || $path_parts['extension'] == "xls" || $path_parts['extension'] == "ods")
             {
                 $this->read_excel($file);
+            }
+            else
+            {
+                $this->convert($file);
             }
         }
     }
@@ -72,7 +79,7 @@ class Amazon_c extends CI_Controller
             // creating and checking amazon project
             $pdata['pick_list'] = 2;
             $pdata['project_name'] = $aproject['plan id'];
-            $pdata['status'] = 0;
+//            $pdata['status'] = 0;
             $pdata['created_date'] = date("Y-m-d");
             $pdata['updated_date'] = date("Y-m-d");
             $pdata['status'] = 1;
@@ -479,5 +486,224 @@ class Amazon_c extends CI_Controller
         header('Content-Disposition: attachment;filename="Amazon_sample'.'.xlsx"');
         header('Cache-Control: max-age=0');
         $objWriter->save('php://output');
+    }
+
+    public function convert($file)
+    {
+        $fileObj = fopen( $file, "rw" );
+        $this->load->library('excel');
+        $this->load->model('Amazon_model');
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->getProperties()->setTitle("export")->setDescription("none");
+        $objPHPExcel->setActiveSheetIndex(0);
+        $row = 1;
+
+        while ( ( $line = fgets( $fileObj ) ) ) // by default this will read one line at a time
+        {
+            //  If you need to do anything to transform this data to CSV format, convert each line here.
+            $arr = explode("\t", $line);
+
+            for($i = 0; $i < count($arr); $i++)
+            {
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($i, $row, $arr[$i]);
+//                echo $arr[$i]." ";
+            }
+//            echo "<br>";
+            $row++;
+        }
+
+//        $objPHPExcel->setActiveSheetIndex(0);
+//        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+        foreach ( $objPHPExcel->getWorksheetIterator () as $worksheet )
+        {
+            $worksheetTitle = $worksheet->getTitle ();
+            $highestRow = $worksheet->getHighestRow (); // e.g. 10
+            $highestColumn = $worksheet->getHighestDataColumn (); // e.g 'F'
+            $highestColumnIndex = PHPExcel_Cell::columnIndexFromString ( $highestColumn );
+            $nrColumns = ord ( $highestColumn ) - 64;
+            for($row = 1; $row <= 7; ++ $row)
+            {
+                $cell1 = $worksheet->getCellByColumnAndRow ( 0, $row );
+                $header = strtolower($cell1->getValue());
+                $cell2 = $worksheet->getCellByColumnAndRow ( 1, $row );
+                $h_value = strtolower($cell2->getValue());
+                $aproject[$header] = trim($h_value);
+            }
+
+            // Reading header
+            for($col = 0; $col < $highestColumnIndex; ++ $col)
+            {
+                $cell = $worksheet->getCellByColumnAndRow ( $col, 9 );
+                $harr[$col] = trim($cell->getValue());
+            }
+
+
+            // creating and checking amazon project
+            $pdata['pick_list'] = 2;
+            $pdata['project_name'] = trim($aproject['plan id']);
+//            $pdata['status'] = 0;
+            $pdata['created_date'] = date("Y-m-d");
+            $pdata['updated_date'] = date("Y-m-d");
+            $pdata['status'] = 1;
+            $pdata['user_id'] = $this->session->userdata('user_id');
+            $pid = $this->Amazon_model->check_project('projects', $pdata['project_name'], $pdata);
+
+            // creating and checking sub project
+            $sn = substr(trim($aproject['name']), -1);
+//            echo "<br>";
+            $sdata['sub_project_name'] = trim($aproject['shipment id']) .'-'.$sn;
+            $sdata['total_sku'] = $aproject['total skus'];
+            $sdata['total_units'] = $aproject['total units'];
+            $sdata['pack_list'] = $aproject['pack list'];
+            $sdata['user_id'] = $this->session->userdata('user_id');
+            $sdata['created_date'] = date("Y-m-d");
+            $sdata['updated_date'] = date("Y-m-d");
+            $sdata['pid'] = $pid;
+            $sdata['status'] = 1;
+            $sub_value = $this->Amazon_model->check_sub_project($pid, $sdata['sub_project_name'], $sdata);
+            if($sub_value > 0) {
+                for ($row = 10; $row <= $highestRow; $row++)
+                {
+                    for ($col = 0; $col < $highestColumnIndex; $col++)
+                    {
+                        if(strtolower($harr[$col]) == 'merchant sku')
+                        {
+                            $cell = $worksheet->getCellByColumnAndRow ( $col, $row );
+                            $list['sku'] = $cell->getValue();
+                        }
+                        else if(strtolower($harr[$col]) == 'fnsku')
+                        {
+                            $cell = $worksheet->getCellByColumnAndRow ( $col, $row );
+                            $list['barcode'] = $cell->getValue();
+                        }
+                        else if(strtolower($harr[$col]) == 'shipped')
+                        {
+                            $cell = $worksheet->getCellByColumnAndRow($col, $row);
+                            $list['qty'] = $cell->getValue();
+                        }
+                    }
+                    $list['pid'] = $pid;
+                    $list['spid'] = $sub_value;
+                    $list['user_id'] = $this->session->userdata('user_id');
+                    $list['created_date'] = date("Y-m-d");
+                    $list['updated_date'] = date("Y-m-d");
+                    $list['status'] = 1;
+                    $pl = $this->Amazon_model->insert('pick_list', $list);
+                }
+
+//                unlink($file);
+                fclose($fileObj);
+                $flag = 1;
+                $this->sub_project($pid, $flag);
+//                redirect(base_url().'amazon_c/sub_project/'.$pid.'/'.$flag, refresh);
+            }
+            else{
+//                unlink($file);
+                fclose($fileObj);
+                $flag = 2;
+//                redirect(base_url().'amazon_c/sub_project/'.$pid.'/'.$flag,refresh);
+                $this->sub_project($pid, $flag);
+            }
+        }
+    }
+
+    function read_txt($file)
+    {
+        $fileObj = fopen( $file, "rt" );
+        $row = 1;
+//        $aproject = array();
+//        $harr = array();
+        $this->load->model('Amazon_model');
+            while ( ($line = fgets ( $fileObj )) )
+            {
+                $arr = explode("\t", $line);
+                if ($row <= 7)
+                {
+                    $header = strtolower($arr[0]);
+                    $h_value = strtolower($arr[1]);
+                    $this->aproject[$header] = $h_value;
+                    $row++;
+                }
+                $row++;
+                if($row > 7) break;
+            }
+
+            $row = 1;
+            while ( ($line = fgets ( $fileObj )) )
+            {
+                if ($row == 9)
+                {
+                    // Reading header
+                    $arr = explode("\t", $line);
+                    for ($col = 0; $col < count($arr); ++$col) {
+                        $this->harr[$col] = $arr[$col];
+                    }
+                    break;
+                }
+                $row++;
+            }
+                $row = 1;
+                // creating and checking amazon project
+                $pdata['pick_list'] = 2;
+                $pdata['project_name'] = $this->aproject['plan id'];
+//            $pdata['status'] = 0;
+                $pdata['created_date'] = date("Y-m-d");
+                $pdata['updated_date'] = date("Y-m-d");
+                $pdata['status'] = 1;
+                $pdata['user_id'] = $this->session->userdata('user_id');
+                $pid = $this->Amazon_model->check_project('projects', $pdata['project_name'], $pdata);
+
+                // creating and checking sub project
+                $sn = substr($this->aproject['name'], -1);
+                $sdata['sub_project_name'] = $this->aproject['shipment id'] . '-' . $sn;
+                $sdata['total_sku'] = $this->aproject['total skus'];
+                $sdata['total_units'] = $this->aproject['total units'];
+                $sdata['pack_list'] = $this->aproject['pack list'];
+                $sdata['user_id'] = $this->session->userdata('user_id');
+                $sdata['created_date'] = date("Y-m-d");
+                $sdata['updated_date'] = date("Y-m-d");
+                $sdata['pid'] = $pid;
+                $sdata['status'] = 1;
+                $sub_value = $this->Amazon_model->check_sub_project($pid, $sdata['sub_project_name'], $sdata);
+                if ($sub_value > 0)
+                {
+                    while ( ($line = fgets ( $fileObj )) )
+                    {
+                        if ($row > 9)
+                        {
+                            $arr = explode("\t", $line);
+                            for ($col = 0; $col < count($arr); $col++)
+                            {
+                                if (strtolower($this->harr[$col]) == 'merchant sku') {
+//                                $cell = $worksheet->getCellByColumnAndRow($col, $row);
+                                    $list['sku'] = $arr[$col];
+                                } else if (strtolower($this->harr[$col]) == 'fnsku') {
+//                                $cell = $worksheet->getCellByColumnAndRow($col, $row);
+                                    $list['barcode'] = $arr[$col];
+                                } else if (strtolower($this->harr[$col]) == 'shipped') {
+//                                $cell = $worksheet->getCellByColumnAndRow($col, $row);
+                                    $list['qty'] = $arr[$col];
+                                }
+                            }
+                            $list['pid'] = $pid;
+                            $list['spid'] = $sub_value;
+                            $list['user_id'] = $this->session->userdata('user_id');
+                            $list['created_date'] = date("Y-m-d");
+                            $list['updated_date'] = date("Y-m-d");
+                            $list['status'] = 1;
+                            $pl = $this->Amazon_model->insert('pick_list', $list);
+                        }
+                        $row++;
+                    }
+//                    unlink($file);
+                    $flag = 1;
+                    $this->sub_project($pid, $flag);
+                    redirect(base_url().'amazon_c/sub_project/'.$pid.'/'.$flag, refresh);
+                } else {
+//                    unlink($file);
+                    $flag = 2;
+//                redirect(base_url().'amazon_c/sub_project/'.$pid.'/'.$flag,refresh);
+                    $this->sub_project($pid, $flag);
+                }
     }
 }
