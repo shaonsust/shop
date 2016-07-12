@@ -5,6 +5,7 @@
 
 	<div class="col-md-8 col-md-offset-2" style="margin-top: 10%">
 		<div class="modal-content" >
+            <a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
         
         <div class="modal-body">
         <!-- <h4 class="modal-title"> -->

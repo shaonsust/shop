@@ -32,13 +32,23 @@ include 'header.php';
 <!--                           href="--><?php //echo base_url() . 'super_admin_c/upload_pick_list/'?><!--"> <span-->
 <!--                                class=""></span> &nbsp; Amazon Project-->
 <!--                        </a>-->
-                        <a class="btn btn-default pull-right" href="<?php echo base_url() . 'amazon_c/amazon_full_item_report/'. $pid?>">
+                        <div class="btn-toolbar">
+                        <a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
+                            <?php if($details->status == 1) { ?>
+                                <a class="btn btn-danger pull-left" href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $pid ?>">End Project</a>
+                            <?php } else { ?>
+                                <a class="btn btn-success pull-left" href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $pid ?>">Run Project</a>
+                            <?php } ?>
+                        <a class="btn btn-info pull-left" href="<?php echo base_url() . 'super_admin_c/edit_pro/' . $pid ?>">Edit Project</a>
+                        <a class="btn btn-danger pull-left" href="<?php echo base_url() . 'super_admin_c/delete_projects/' . $pid ?>" onclick="return CheckDelete()">Delete Project</a>
+                        <a class="btn btn-primary pull-right" href="<?php echo base_url() . 'amazon_c/amazon_full_item_report/'. $pid?>">
                             <span class=""></span> &nbsp; Full Item Report
                         </a>
-                        <a class="btn btn-default pull-right" href="<?php echo base_url() . 'amazon_c/amazon_full_box_report/'. $pid?>">
+                        <a class="btn btn-success pull-right" href="<?php echo base_url() . 'amazon_c/amazon_full_box_report/'. $pid?>">
                             <span class=""></span> &nbsp; Full Box Report
                         </a>
-                        <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#amazon">Amazon Project</button>
+                        <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#amazon">Amazon Project</button>
+                        </div>
                         <div class="panel-body">
                             <?php
 

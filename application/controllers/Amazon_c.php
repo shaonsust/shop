@@ -192,6 +192,8 @@ class Amazon_c extends CI_Controller
     {
         //echo 'dddddd';
         //exit();
+        $this->load->model('Super_admin_c_model');
+        $data ['details'] = $this->Super_admin_c_model->show_details('projects', $pid);
         $data['pid'] = $pid;
         $this->load->model('Amazon_model');
         $data['sub_project'] = $this->Amazon_model->select_all('sub_project', $pid);

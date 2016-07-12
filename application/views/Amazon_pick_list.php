@@ -5,6 +5,10 @@ include 'header.php';
 td{
 color:white;
 }
+.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
+	background-color: #550055;
+	color:#eeeeee;
+}
 </style>
 <div class="container">
 	<div class="row">
@@ -16,7 +20,8 @@ color:white;
 							<h4 class="box-title text-center">Item List From Excel File &nbsp;</h4>
 						</div>
 <!-- 						<a class="btn btn-default pull-right" href="<?php echo base_url();?>super_admin_c/show_details"> <span class="fa fa-plus"></span> &nbsp; View Report -->
-<!-- 						</a> -->					
+<!-- 						</a> -->
+						<a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
 						
 			
             

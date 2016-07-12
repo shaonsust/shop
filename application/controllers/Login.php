@@ -28,11 +28,11 @@ class Login extends CI_Controller {
             $this->session->set_userdata($sdata);
 
             if ($user_role == 1) {
-                redirect('super_admin_c');
+                redirect('super_admin_c/projects');
             } elseif ($user_role == 2) {
                 redirect('admin_c');
             } elseif ($user_role == 3) {
-                redirect('super_admin_c');
+                redirect('super_admin_c/projects');
             }
         } else {
             $this->load->view('Login');

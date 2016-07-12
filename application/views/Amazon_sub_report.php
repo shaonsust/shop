@@ -13,6 +13,7 @@ include 'header.php';
                         </div>
 
                         <div class="btn-toolbar">
+                            <a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
                             <a class="btn btn-success pull-right "
                                href="<?php echo base_url() . 'amazon_c/pick_list/' . $pid . '/' . $spid; ?>"> <span
                                     class=""></span> &nbsp; View Item List

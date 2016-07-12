@@ -9,8 +9,9 @@ include 'header.php';
 					<div class="panel panel-primary">
 												<div class="panel-heading">
 							<h4 class="box-title text-center">Box List ( Total Box : <?php echo $box_no;?> )</h4>
-						</div>	
-						<button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#myModal">Create New Box</button>
+						</div>
+						<a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
+						<button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#myModal">Create New Box</button>
 						<div class="panel-body">
        						<?php
 							if (! empty ( $msg )) {

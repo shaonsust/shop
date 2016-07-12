@@ -1,6 +1,18 @@
 <?php
 include 'header.php';
 ?>
+<style>
+	td{
+		color:white;
+	}
+	td a{
+		color:white;
+	}
+	.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
+		background-color: #550055;
+		color:#eeeeee;
+	}
+</style>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
@@ -13,7 +25,15 @@ include 'header.php';
 						</div>
 
 					<div class="btn-toolbar">
-                    	<a class="btn btn-success pull-right "
+						<a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
+						<?php if($details->status == 1) { ?>
+							<a class="btn btn-danger pull-left" href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $pid ?>">End Project</a>
+						<?php } else { ?>
+							<a class="btn btn-success pull-left" href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $pid ?>">Run Project</a>
+						<?php } ?>
+						<a class="btn btn-primary pull-left" href="<?php echo base_url() . 'super_admin_c/edit_pro/' . $pid ?>">Edit Project</a>
+						<a class="btn btn-danger pull-left" href="<?php echo base_url() . 'super_admin_c/delete_projects/' . $pid ?>" onclick="return CheckDelete()">Delete Project</a>
+                    	<a class="btn btn-primary pull-right "
 							href="<?php echo base_url() . 'super_admin_c/pick_list/' . $pid; ?>"> <span
 							class=""></span> &nbsp; View Pick List
 						</a>
@@ -21,11 +41,11 @@ include 'header.php';
 							href="<?php echo base_url() . 'super_admin_c/box_list/' . $pid; ?>"> <span
 							class=""></span> &nbsp; View Box List
 						</a>
-						<a class="btn btn-primary pull-right "
+						<a class="btn btn-danger pull-right "
 						   href="<?php echo base_url() . 'report_c/project_report_excel/' . $pid; ?>"> <span
 								class=""></span> &nbsp; Export
 						</a>
-						<a class="btn btn-primary pull-right "
+						<a class="btn btn-info pull-right "
 						   href="<?php echo base_url() . 'report_c/project_report/' . $pid; ?>"> <span
 								class=""></span> &nbsp; View Report
 						</a>
@@ -34,7 +54,7 @@ include 'header.php';
 						<div class="box-body">
 							<div class="table-responsive" style="width: 100% !important">
 								<table id="table"
-									class="table table-bordered table-hover table-striped dataTable "
+									class="table table-bordered table-hover dataTable "
 									cellspacing="0" width="100%">
 									<thead>
 										<tr>
@@ -53,8 +73,7 @@ include 'header.php';
 																				{
 																					
 																					?>
-                        
-                        <tr>
+																					<tr <?php if($c['qty'] === $c['qty_scaned']) { ?> bgcolor = "#076403" <?php  } else { ?> bgcolor = "#e60000" <?php }?>>
 											<td>
 											<a
 												href="<?php echo base_url() . 'super_admin_c/box_list/' . $c['pid'] .'/'. $c['barcode'].'/'.$c['id']?>"
@@ -94,3 +113,4 @@ function CheckDelete()
 	}
 }
 </script>
+

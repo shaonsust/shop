@@ -44,6 +44,7 @@
                     <label><a href="<?php echo base_url(); ?>users/change_password/<?php echo $user->id ?>"> change password</a></label>
                 </div>
                 <button type="submit" class="btn btn-success">Update</button>
+                <a class="btn btn-info" href="#" onclick="window.history.back();">Go back</a>
             </form>
         </div>
     </div>

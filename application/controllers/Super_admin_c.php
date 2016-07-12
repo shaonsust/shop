@@ -18,7 +18,7 @@ class Super_admin_c extends CI_Controller {
     public function index() {
         $this->load->view('Home');
     }
-    public function projects($start=0, $fp = 1) 
+    public function projects($start=0, $fp = 3)
     {
         $this->load->model('Super_admin_c_model');
         $data['msg']='Please select a project for new count page';
@@ -31,26 +31,26 @@ class Super_admin_c extends CI_Controller {
         if($fp == 1)
         {
         	$config['total_rows'] = $this->db->get('projects')->num_rows();
-        	$config['per_page'] = 10;
+            $config['per_page'] = 10;
         	$data['project_no'] = $config['total_rows'];
-        	$data ['projects'] = $this->Super_admin_c_model->projects_list('projects', $config['per_page'], $start);
-        	$data ['projects1'] = $this->Super_admin_c_model->projects_list1('projects', $config['per_page'], $start);
+        	$data ['projects'] = $this->Super_admin_c_model->projects_list('projects', 10000, $start);
+        	$data ['projects1'] = $this->Super_admin_c_model->projects_list1('projects', 10000, $start);
         }
         else if($fp == 2)
         {
         	$config['total_rows'] = $this->Super_admin_c_model->project_count(0);
         	$config['per_page'] = 10;
         	$data['project_no'] = $config['total_rows'];
-        	$data ['projects'] = $this->Super_admin_c_model->project_no(0, $config['per_page'], $start);
-            $data ['projects1'] = $this->Super_admin_c_model->project_filter(0, $config['per_page'], $start);
+        	$data ['projects'] = $this->Super_admin_c_model->project_no(0, 10000, $start);
+            $data ['projects1'] = $this->Super_admin_c_model->project_filter(0, 10000, $start);
         }
         else
         {
         	$config['total_rows'] = $this->Super_admin_c_model->project_count(1);
         	$config['per_page'] = 10;
         	$data['project_no'] = $config['total_rows'];
-        	$data ['projects'] = $this->Super_admin_c_model->project_no(1, $config['per_page'], $start);
-            $data ['projects1'] = $this->Super_admin_c_model->project_filter(1, $config['per_page'], $start);
+        	$data ['projects'] = $this->Super_admin_c_model->project_no(1, 10000, $start);
+            $data ['projects1'] = $this->Super_admin_c_model->project_filter(1, 10000, $start);
         }
         
         //config for bootstrap pagination class integration
@@ -73,8 +73,8 @@ class Super_admin_c extends CI_Controller {
         $config['num_tag_open'] = '<li>';
         $config['num_tag_close'] = '</li>';
            		
-        $this->pagination->initialize($config);
-        $data['pagination'] = $this->pagination->create_links();
+//        $this->pagination->initialize($config);
+//        $data['pagination'] = $this->pagination->create_links();
         //die();
         $this->load->view('Projects',$data);
     }
@@ -149,6 +149,7 @@ class Super_admin_c extends CI_Controller {
         $config['num_tag_close'] = '</li>';
         
         $data['pro_bin'] = $this->Super_admin_c_model->select_bin_by_pro_id('bin', $id, $config['per_page'], $start);
+//        $data['status'] = $data['pro_bin'][0]['status'];
         $data ['msg'] = "";
         $sdata['project_id']=$id;
         $data['pid'] = $id;
@@ -161,6 +162,7 @@ class Super_admin_c extends CI_Controller {
         if($val->pick_list == 1)
         {
         	$data['list'] = $this->Super_admin_c_model->select_list($id);
+            $data['status'] = $data['list'][0]['status'];
         	$this->load->view('box_details', $data);
         }
         else

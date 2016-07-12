@@ -37,9 +37,10 @@ div.table1
 <!--						   href="--><?php //echo base_url();?><!--pick_list_c/create_projects"> <span-->
 <!--								class=""></span> &nbsp; Pick List Projects-->
 <!--						</a>-->
-						<button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#bin1">Bin Project</button>
-						<button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#amazon">Amazon Project</button>
-						<button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#pick_list1">Pick List Project</button>
+
+						<button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#bin1">Bin Project</button>
+						<button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#amazon">Amazon Project</button>
+						<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#pick_list1">Pick List Project</button>
 <!--						<a class="btn btn-default pull-right "-->
 <!--						   href="--><?php //echo base_url() . 'super_admin_c/upload_pick_list/'?><!--"> <span-->
 <!--								class=""></span> &nbsp; Amazon Project-->
@@ -216,9 +217,9 @@ div.table1
 									cellspacing="0" width="100%">
 									<thead>
 										<tr>
-											<th width="40%">Project Name</th>
-											<th width="40%" class="btn btn-block" id="bt1">Created Date <span class="fa fa-angle-down" style="margin-left:20px;"></span></th>
-											<th width="20%">Action</th>
+											<th width="75%">Project Name</th>
+											<th width="25%">Created Date <span class="" style="margin-left:20px;"></span></th>
+<!--											<th width="20%">Action</th>-->
 										</tr>
 									</thead>
 									<tbody>
@@ -245,45 +246,44 @@ echo $c ['project_name'];
 
 																					if ($c ['pick_list'] == 1)
 																					{
-																					?>&nbsp;&nbsp;&nbsp;<i  class="fa fa-flag" aria-hidden="true"></i>
+																					?>&nbsp;&nbsp;&nbsp;(Pick List project)
 													<?php }
 														else if($c['pick_list'] == 2){
-															?>&nbsp;&nbsp;&nbsp;<i  class="fa fa-at" aria-hidden="true"></i>
-													<?php	}
-													?>
+															?>&nbsp;&nbsp;&nbsp;(Amazon project)
+													<?php	} else { ?>&nbsp;&nbsp;&nbsp;(Bin project) <?php } ?>
 												</a></td>
 											<td><?php echo $c['created_date'];?></td>
 											<!-- <td><?php //if ($c['status']==1){ echo "Running";} else{ echo"Ended";}?><a href="<?php //echo base_url() . 'super_admin_c/change_project_status/' . $c['id'] ?>">(change)</a></td> -->
-											<td>
-                                <?php
-																					if ($c ['status'] == 1) {
-																						?>
-                                    <a
-												href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $c['id'] ?>"
-												class="btn btn-info btn-xs" title="End this project"><i
-													class="fa fa-times"></i></a>
-                                <?php
-																					} else {
-																						?>
-                                    <a
-												href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $c['id'] ?>"
-												class="btn btn-info btn-xs" title="Run this project"><i
-													class="fa fa-check" style="font-size: 10px;"></i></a>
-                                <?php
-																					}
-																					?>
-                                <a
-												href="<?php echo base_url() . 'super_admin_c/show_details/' . $c['id'] ?>"
-												class="btn btn-info btn-xs" title="Show Details"><i
-													class="fa fa-list"></i></a> <a
-												href="<?php echo base_url() . 'super_admin_c/edit_pro/' . $c['id'] ?>"
-												class="btn btn-warning btn-xs" title="Edit"><i
-													class="fa fa-pencil"></i></a> <a
-												href="<?php echo base_url() . 'super_admin_c/delete_projects/' . $c['id'] ?>"
-												class="btn btn-danger btn-xs delete"
-												onclick="return CheckDelete()" title="Delete"><i
-													class="fa fa-remove"></i></a>
-											</td>
+<!--											<td>-->
+<!--                                --><?php
+//																					if ($c ['status'] == 1) {
+//																						?>
+<!--                                    <a-->
+<!--												href="--><?php //echo base_url() . 'super_admin_c/change_project_status/' . $c['id'] ?><!--"-->
+<!--												class="btn btn-info btn-xs" title="End this project"><i-->
+<!--													class="fa fa-times"></i></a>-->
+<!--                                --><?php
+//																					} else {
+//																						?>
+<!--                                    <a-->
+<!--												href="--><?php //echo base_url() . 'super_admin_c/change_project_status/' . $c['id'] ?><!--"-->
+<!--												class="btn btn-info btn-xs" title="Run this project"><i-->
+<!--													class="fa fa-check" style="font-size: 10px;"></i></a>-->
+<!--                                --><?php
+//																					}
+//																					?>
+<!--                                <a-->
+<!--												href="--><?php //echo base_url() . 'super_admin_c/show_details/' . $c['id'] ?><!--"-->
+<!--												class="btn btn-info btn-xs" title="Show Details"><i-->
+<!--													class="fa fa-list"></i></a> <a-->
+<!--												href="--><?php //echo base_url() . 'super_admin_c/edit_pro/' . $c['id'] ?><!--"-->
+<!--												class="btn btn-warning btn-xs" title="Edit"><i-->
+<!--													class="fa fa-pencil"></i></a> <a-->
+<!--												href="--><?php //echo base_url() . 'super_admin_c/delete_projects/' . $c['id'] ?><!--"-->
+<!--												class="btn btn-danger btn-xs delete"-->
+<!--												onclick="return CheckDelete()" title="Delete"><i-->
+<!--													class="fa fa-remove"></i></a>-->
+<!--											</td>-->
 										</tr>
                        
                         <?php
@@ -292,86 +292,7 @@ echo $c ['project_name'];
 																				?>
                     </tbody>
 								</table>
-
-								<!-- ********************************************************************************** -->
-								<table id="tb2" class="table table-bordered dataTable "
-									cellspacing="0" width="100%">
-									<thead>
-										<tr>
-											<th width="40%">Project Name</th>
-											<th width="40%" class="btn btn-block" id="bt2">Created Date <span class="fa fa-angle-up" style="margin-left:20px;"></span></th>
-											<th width="20%">Action</th>
-										</tr>
-									</thead>
-									<tbody>
-                    <?php
-																				$i = 1;
-																				
-																				foreach ( $projects1 as $c ) 
-
-																				{
-																					
-																					?>
-                        
-                        <tr <?php if($c['status'] == 1) { ?>
-											bgcolor="#076403" <?php  } else { ?> bgcolor="#e60000"
-											<?php } ?>>
-											<td><a <?php if($c['status'] == 1) { ?> style="color: white;"
-												<?php } else {?> style="color:white;" <?php }?>
-												href="<?php echo base_url() . 'super_admin_c/show_details/' . $c['id'] ?>"
-												title="Details"><?php
-																					
-echo $c ['project_name'];
-																					?><?php
-
-																					if ($c ['pick_list'] == 1)
-																						echo " (Pick List Project)";
-																					?></a></td>
-											<td  style="color:white;"><span ><?php echo $c['created_date'];?></span></td>
-											<!-- <td><?php //if ($c['status']==1){ echo "Running";} else{ echo"Ended";}?><a href="<?php //echo base_url() . 'super_admin_c/change_project_status/' . $c['id'] ?>">(change)</a></td> -->
-											<td>
-                                <?php
-																					if ($c ['status'] == 1) {
-																						?>
-                                    <a
-												href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $c['id'] ?>"
-												class="btn btn-info btn-xs" title="End this project"><i
-													class="fa fa-times"></i></a>
-                                <?php
-																					} else {
-																						?>
-                                    <a
-												href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $c['id'] ?>"
-												class="btn btn-info btn-xs" title="Run this project"><i
-													class="fa fa-check" style="font-size: 10px;"></i></a>
-                                <?php
-																					}
-																					?>
-                                <a
-												href="<?php echo base_url() . 'super_admin_c/show_details/' . $c['id'] ?>"
-												class="btn btn-info btn-xs" title="Show Details"><i
-													class="fa fa-list"></i></a> <a
-												href="<?php echo base_url() . 'super_admin_c/edit_pro/' . $c['id'] ?>"
-												class="btn btn-warning btn-xs" title="Edit"><i
-													class="fa fa-pencil"></i></a> <a
-												href="<?php echo base_url() . 'super_admin_c/delete_projects/' . $c['id'] ?>"
-												class="btn btn-danger btn-xs delete"
-												onclick="return CheckDelete()" title="Delete"><i
-													class="fa fa-remove"></i></a>
-											</td>
-										</tr>
-                       
-                        <?php
-																					$i ++;
-																				}
-																				?>
-                    </tbody>
-								</table>
-
-								<!-- ********************************************************************************** -->
-
 							</div>
-							<?php echo $pagination; ?>							
 						</div>
 					</div>
 				</div>
@@ -388,6 +309,15 @@ $(document).ready(function(){
 		var value = $('.pfilter').val();
 // 		alert(value);
 		window.location.replace("<?php echo base_url() ?>super_admin_c/projects/" + 0 + "/" + value);
+	});
+});
+
+$(document).ready(function () {
+	$('#tb1').dataTable({
+			bFilter: false,
+			bInfo: false,
+			iDisplayLength: 25,
+			bLengthChange: false
 	});
 });
 

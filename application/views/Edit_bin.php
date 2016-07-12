@@ -39,6 +39,7 @@ include 'header.php';
                     <input type="hidden" value="<?php echo $bin->project_id ?>" name="bin_id">
                 </div>
                 <button type="submit" class="btn btn-success">Update</button>
+                <a class="btn btn-info" href="#" onclick="window.history.back();">Go back</a>
             </form>
         </div>
     </div>

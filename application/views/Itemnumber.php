@@ -10,7 +10,8 @@ include 'header.php';
 
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-12">                        
+                    <div class="col-md-12">
+                        <a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
                         <?php 
                             $message = $this->session->userdata('message');
                             if(isset($message) && !empty($message))
@@ -19,6 +20,7 @@ include 'header.php';
                                 $this->session->unset_userdata('message');
                             }
                         ?>
+
                         <label><h3>Please Enter/Scan the Item Name/Number:  <br><small>You are inserting item to bin: <?php echo $bin_number; ?></small></h3></label>
                         <p id="message" style="color: black;">Please scan an item to insert</p>
                         <input type="text" id = "item_num" name = "item" autofocus="true" style="width: 100%; height: 40px; border-radius: 5px;">

@@ -21,6 +21,7 @@ include 'header.php';
                         <!--                           href="--><?php //echo base_url() . 'super_admin_c/upload_pick_list/'?><!--"> <span-->
                         <!--                                class=""></span> &nbsp; Amazon Project-->
                         <!--                        </a>-->
+                        <a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
                         <a class="btn btn-default pull-right" href="<?php echo base_url() . 'amazon_c/amazon_full_item_report/'. $pid?>">
                             <span class=""></span> &nbsp; Full Item Report
                         </a>

@@ -19,7 +19,7 @@ class Pick_list_c extends CI_Controller
         if($fp == 1)
         {
             $config['total_rows'] = $this->db->get('projects')->num_rows();
-            $config['per_page'] = 10;
+            $config['per_page'] = 30;
             $data['project_no'] = $config['total_rows'];
             $data ['projects'] = $this->Super_admin_c_model->projects_list('projects', $config['per_page'], $start);
             $data ['projects1'] = $this->Super_admin_c_model->projects_list1('projects', $config['per_page'], $start);
@@ -27,7 +27,7 @@ class Pick_list_c extends CI_Controller
         else if($fp == 2)
         {
             $config['total_rows'] = $this->Super_admin_c_model->project_count(0);
-            $config['per_page'] = 10;
+            $config['per_page'] = 30;
             $data['project_no'] = $config['total_rows'];
             $data ['projects'] = $this->Super_admin_c_model->project_no(0, $config['per_page'], $start);
             $data ['projects1'] = $this->Super_admin_c_model->project_filter(0, $config['per_page'], $start);
@@ -35,7 +35,7 @@ class Pick_list_c extends CI_Controller
         else
         {
             $config['total_rows'] = $this->Super_admin_c_model->project_count(1);
-            $config['per_page'] = 10;
+            $config['per_page'] = 30;
             $data['project_no'] = $config['total_rows'];
             $data ['projects'] = $this->Super_admin_c_model->project_no(1, $config['per_page'], $start);
             $data ['projects1'] = $this->Super_admin_c_model->project_filter(1, $config['per_page'], $start);

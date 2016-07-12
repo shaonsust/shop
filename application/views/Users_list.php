@@ -8,7 +8,8 @@ include 'header.php';
             <div class="box-header">
                 <div class="panel panel-primary" >
                     <div class="panel-heading">
-                        <h4 class="box-title text-center">Users List &nbsp; 
+                        <a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
+                        <h4 class="box-title text-center">Users List &nbsp;
                     <a class="btn btn-default pull-right" href="<?php echo base_url();?>users/create_users">
                         <span class="fa fa-plus"></span> &nbsp; Add New Users</a></h4>
                     </div>

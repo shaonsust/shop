@@ -11,18 +11,18 @@ include 'header.php';
 							<h4 class="box-title text-center">Project Name:&nbsp;&nbsp;<?php echo $details->project_name?> (Total bin : <?php echo $bin_count;?>)
                     </h4>
 						</div>
-                    <?php if (($details->status == 1) && ($details->pick_list == 0)) { ?>
-                    
-<!--                    <a class="btn btn-default pull-right "-->
-<!--							href="--><?php //echo base_url() . 'super_admin_c/upload_pick_list/' . $pid . '/' . 1 ?><!--"> <span-->
-<!--							class=""></span> &nbsp; Upload Pick List-->
-<!--						</a>-->
-					
-<!--                    <a class="btn btn-default pull-right "-->
-<!--							href="--><?php //echo base_url();?><!--super_admin_c/newbin"> <span-->
-<!--							class=""></span> &nbsp; Add New Bin-->
-<!--						</a>-->
-						<button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#new_bin">Add New Bin</button>
+                    <?php if (($details->pick_list == 0)) { ?>
+						<div class="btn-toolbar">
+						<a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
+							<?php if($details->status == 1) { ?>
+								<a class="btn btn-danger pull-left" href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $pid ?>">End Project</a>
+							<?php } else { ?>
+								<a class="btn btn-success pull-left" href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $pid ?>">Run Project</a>
+							<?php } ?>
+						<a class="btn btn-primary pull-left" href="<?php echo base_url() . 'super_admin_c/edit_pro/' . $pid ?>">Edit Project</a>
+						<a class="btn btn-danger pull-left" href="<?php echo base_url() . 'super_admin_c/delete_projects/' . $pid ?>" onclick="return CheckDelete()">Delete Project</a>
+						<button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#new_bin">Add New Bin</button>
+						</div>
                     <?php }
                     else if(($details->status == 1) && ($details->pick_list == 1))
                     { ?>

@@ -12,7 +12,8 @@ include 'header.php';
 						</div>
 <!-- 						<a class="btn btn-default pull-right" href="<?php echo base_url();?>super_admin_c/show_details"> <span class="fa fa-plus"></span> &nbsp; View Report -->
 <!-- 						</a> -->
-						<button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#myModal">Create New Box</button>					
+						<a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
+						<button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#myModal">Create New Box</button>
 						
 						<div class="panel-body">
        <?php

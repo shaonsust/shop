@@ -45,7 +45,7 @@ class Super_admin_c_model extends CI_Model {
     public function projects_list1($table, $limit = 25, $start = 0)
     {
 
-    	$this->db->select()->from($table)->order_by('created_date', 'desc')->limit($limit, $start);
+    	$this->db->select()->from($table)->order_by('created_date', 'asc')->limit($limit, $start);
     	$query = $this->db->get();
     	// $sql = "select * from $table order by 'created_date' desc limit 5, $start";
     	//$query = $this->db->query($sql);

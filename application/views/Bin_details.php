@@ -15,6 +15,7 @@ include 'header.php';
                     
                          &nbsp;</a></h4>
                     </div>
+                    <a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
                     <?php if ($details->status == 1) { ?>
                     <a class="btn btn-default pull-right " href="<?php echo base_url();?>super_admin_c/item/<?php echo $bin->bin_id . '/' . $bin->bin_number ?>">
                         <span class="fa fa-plus"></span> &nbsp; Add New Item</a>
