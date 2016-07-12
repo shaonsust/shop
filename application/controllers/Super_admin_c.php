@@ -162,7 +162,7 @@ class Super_admin_c extends CI_Controller {
         if($val->pick_list == 1)
         {
         	$data['list'] = $this->Super_admin_c_model->select_list($id);
-            $data['status'] = $data['list'][0]['status'];
+//            $data['status'] = $data['list'][0]['status'];
         	$this->load->view('box_details', $data);
         }
         else
