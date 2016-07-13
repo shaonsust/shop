@@ -37,7 +37,7 @@ div.table1
 <!--						   href="--><?php //echo base_url();?><!--pick_list_c/create_projects"> <span-->
 <!--								class=""></span> &nbsp; Pick List Projects-->
 <!--						</a>-->
-
+						<div class="btn-toolbar">
 						<button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#bin1">Bin Project</button>
 						<button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#amazon">Amazon Project</button>
 						<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#pick_list1">Pick List Project</button>
@@ -45,25 +45,27 @@ div.table1
 <!--						   href="--><?php //echo base_url() . 'super_admin_c/upload_pick_list/'?><!--"> <span-->
 <!--								class=""></span> &nbsp; Amazon Project-->
 <!--						</a>-->
-						<div class="panel-body">
-							<div class="col-md-2 col-xs-6 col-sm-3">
-								<select class="form-control pfilter" id="" name="pfilter"
-									style="margin-top: -14px; margin-left: -30px;">
+<!--						<div class="panel-body">-->
+<!--							<div class="col-md-2 col-xs-6 col-sm-3">-->
+								<select class="btn btn-default pull-left pfilter" id="" name="pfilter">
 									<option>Filter project</option>
 									<option value="1">All</option>
 									<option value="2">Ended</option>
 									<option value="3">Running</option>
 								</select>
-							</div>
-							<br> <br>
-       <?php
-							
-							if (! empty ( $msg )) {
-								echo $msg;
-							}
-							?>
+						</div>
+							<br>
+
+<!--       --><?php
+//
+//							if (! empty ( $msg )) {
+//								echo $msg;
+//							}
+//							?>
+
+
                 
-            </div>
+<!--            </div>-->
 						<!-- *****************************************Start Pick list project modal*********************************** -->
 						<div class="modal fade" id="pick_list1" role="dialog">
 							<div class="modal-dialog">

@@ -1,6 +1,18 @@
 <?php
 include 'header.php';
 ?>
+<style>
+    td{
+        color:white;
+    }
+    td a{
+        color:white;
+    }
+    .table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
+        background-color: #550055;
+        color:#eeeeee;
+    }
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -14,7 +26,7 @@ include 'header.php';
 
                         <div class="btn-toolbar">
                             <a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
-                            <a class="btn btn-success pull-right "
+                            <a class="btn btn-primary pull-right "
                                href="<?php echo base_url() . 'amazon_c/pick_list/' . $pid . '/' . $spid; ?>"> <span
                                     class=""></span> &nbsp; View Item List
                             </a>
@@ -26,7 +38,7 @@ include 'header.php';
 <!--                               href="--><?php //echo base_url() . 'report_c/project_report_excel/' . $pid; ?><!--"> <span-->
 <!--                                    class=""></span> &nbsp; Export-->
 <!--                            </a>-->
-                            <a class="btn btn-primary pull-right "
+                            <a class="btn btn-info pull-right "
                                href="<?php echo base_url() . 'report_c/amazon_sub_report/' . $pid . '/' . $spid; ?>"> <span
                                     class=""></span> &nbsp; View Report
                             </a>
@@ -35,7 +47,7 @@ include 'header.php';
                         <div class="box-body">
                             <div class="table-responsive" style="width: 100% !important">
                                 <table id="table"
-                                       class="table table-bordered table-hover table-striped dataTable "
+                                       class="table table-bordered table-hover dataTable "
                                        cellspacing="0" width="100%">
                                     <thead>
                                     <tr>
@@ -55,7 +67,7 @@ include 'header.php';
 
                                         ?>
 
-                                        <tr>
+                                        <tr <?php if($c['qty'] === $c['qty_scaned']) { ?> bgcolor = "#076403" <?php  } else { ?> bgcolor = "#e60000" <?php }?>>
                                             <td>
                                                 <a
                                                     href="<?php echo base_url() . 'amazon_c/box_list/' . $c['pid']. '/' . $c['spid'] .'/'. $c['barcode'].'/'.$c['id'] ?>"
