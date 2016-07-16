@@ -1,6 +1,16 @@
 <?php
 include 'header.php';
 ?>
+<style>
+    @media only screen and (max-width: 555px) {
+        #back, #vbl, #vil, #expt, #vr {
+            width: 99%;
+            font-size: 13px;
+        }
+        table {
+            font-size: 13px;
+        }
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -13,20 +23,20 @@ include 'header.php';
                         </div>
 
                         <div class="btn-toolbar">
-                            <a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
-                            <a class="btn btn-success pull-right "
+                            <a class="btn btn-info pull-left" id="back" href="#" onclick="window.history.back();">Go back</a>
+                            <a class="btn btn-success pull-right " id="vil"
                                href="<?php echo base_url() . 'amazon_c/pick_list/' . $pid . '/' . $spid; ?>"> <span
                                     class=""></span> &nbsp; View Item List
                             </a>
-                            <a class="btn btn-success pull-right "
+                            <a class="btn btn-success pull-right " id="vbl"
                                href="<?php echo base_url() . 'amazon_c/box_list/' . $pid . '/' . $spid; ?>"> <span
                                     class=""></span> &nbsp; View Box List
                             </a>
-                            <a class="btn btn-primary pull-right "
+                            <a class="btn btn-primary pull-right " id="expt"
                                href="<?php echo base_url() . 'report_c/amazon_sub_report_excel/' . $pid . '/' . $spid; ?>"> <span
                                     class=""></span> &nbsp; Export
                             </a>
-                            <a class="btn btn-primary pull-right "
+                            <a class="btn btn-primary pull-right " id="vr"
                                href="<?php echo base_url() . 'report_c/amazon_sub_report/' . $pid . '/' . $spid; ?>"> <span
                                     class=""></span> &nbsp; View Report
                             </a>

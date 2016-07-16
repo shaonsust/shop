@@ -2,7 +2,14 @@
 include 'header.php';
 ?>
 <style>
-
+    @media only screen and (max-width: 995px) {
+        #back, #fir, #fbr, #amz {
+            width: 99%;
+            font-size: 13px;
+        }
+        table {
+            font-size: 13px;
+        }
 </style>
 <div class="container">
     <div class="row">
@@ -21,14 +28,14 @@ include 'header.php';
                         <!--                           href="--><?php //echo base_url() . 'super_admin_c/upload_pick_list/'?><!--"> <span-->
                         <!--                                class=""></span> &nbsp; Amazon Project-->
                         <!--                        </a>-->
-                        <a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
-                        <a class="btn btn-default pull-right" href="<?php echo base_url() . 'amazon_c/amazon_full_item_report/'. $pid?>">
+                        <a class="btn btn-info pull-left" id="back" href="#" onclick="window.history.back();">Go back</a>
+                        <a class="btn btn-default pull-right" id="fir" href="<?php echo base_url() . 'amazon_c/amazon_full_item_report/'. $pid?>">
                             <span class=""></span> &nbsp; Full Item Report
                         </a>
-                        <a class="btn btn-default pull-right" href="<?php echo base_url() . 'amazon_c/amazon_full_box_report/'. $pid?>">
+                        <a class="btn btn-default pull-right" id="fbr" href="<?php echo base_url() . 'amazon_c/amazon_full_box_report/'. $pid?>">
                             <span class=""></span> &nbsp; Full Box Report
                         </a>
-                        <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#amazon">Amazon Project</button>
+                        <button type="button" class="btn btn-default pull-right" id="amz" data-toggle="modal" data-target="#amazon">Amazon Project</button>
                         <div class="panel-body">
                             <?php
 

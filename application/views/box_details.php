@@ -12,6 +12,15 @@ include 'header.php';
 		background-color: #550055;
 		color:#eeeeee;
 	}
+	@media only screen and (max-width: 995px) {
+		#back, #erp, #ep, #dp, #vpl, #vbl, #vr, #expt {
+			width: 99%;
+			font-size: 13px;
+		}
+		table {
+			font-size: 13px;
+		}
+	}
 </style>
 <div class="container">
 	<div class="row">
@@ -25,27 +34,27 @@ include 'header.php';
 						</div>
 
 					<div class="btn-toolbar">
-						<a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
+						<a class="btn btn-info pull-left" id="back" href="#" onclick="window.history.back();">Go back</a>
 						<?php if($details->status == 1) { ?>
-							<a class="btn btn-danger pull-left" href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $pid ?>">End Project</a>
+							<a class="btn btn-danger pull-left" id="erp" href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $pid ?>">End Project</a>
 						<?php } else { ?>
-							<a class="btn btn-success pull-left" href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $pid ?>">Run Project</a>
+							<a class="btn btn-success pull-left" id="erp" href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $pid ?>">Run Project</a>
 						<?php } ?>
-						<a class="btn btn-primary pull-left" href="<?php echo base_url() . 'super_admin_c/edit_pro/' . $pid ?>">Edit Project</a>
-						<a class="btn btn-danger pull-left" href="<?php echo base_url() . 'super_admin_c/delete_projects/' . $pid ?>" onclick="return CheckDelete()">Delete Project</a>
-                    	<a class="btn btn-primary pull-right "
+						<a class="btn btn-primary pull-left" id="ep" href="<?php echo base_url() . 'super_admin_c/edit_pro/' . $pid ?>">Edit Project</a>
+						<a class="btn btn-danger pull-left" id="dp" href="<?php echo base_url() . 'super_admin_c/delete_projects/' . $pid ?>" onclick="return CheckDelete()">Delete Project</a>
+                    	<a class="btn btn-primary pull-right " id="vpl"
 							href="<?php echo base_url() . 'super_admin_c/pick_list/' . $pid; ?>"> <span
 							class=""></span> &nbsp; View Pick List
 						</a>
-						<a class="btn btn-success pull-right "
+						<a class="btn btn-success pull-right " id="vbl"
 							href="<?php echo base_url() . 'super_admin_c/box_list/' . $pid; ?>"> <span
 							class=""></span> &nbsp; View Box List
 						</a>
-						<a class="btn btn-danger pull-right "
+						<a class="btn btn-danger pull-right " id="expt"
 						   href="<?php echo base_url() . 'report_c/project_report_excel/' . $pid; ?>"> <span
 								class=""></span> &nbsp; Export
 						</a>
-						<a class="btn btn-info pull-right "
+						<a class="btn btn-info pull-right " id="vr"
 						   href="<?php echo base_url() . 'report_c/project_report/' . $pid; ?>"> <span
 								class=""></span> &nbsp; View Report
 						</a>

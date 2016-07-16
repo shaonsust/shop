@@ -19,6 +19,23 @@ div.table1
 {
 	color: #000;
 }
+
+@media only screen and (max-width: 550px) {
+	#bin, #pick, #amazon5, #fltr {
+		width: 99%;
+		font-size: 13px;
+	}
+	#amazon5 {
+		float: left;
+	}
+	#head1 {
+		height:70px;
+		font-size: 15px;
+	}
+	table {
+		font-size: 12px;
+	}
+}
 </style>
 <div class="container">
 	<div class="row">
@@ -26,7 +43,7 @@ div.table1
 			<div class="box box-primary">
 				<div class="box-header">
 					<div class="panel panel-primary">
-						<div class="panel-heading">
+						<div class="panel-heading" id="head1">
 							<h4 class="box-title text-center">Projects List &nbsp; (Total project : <?php echo $project_no; ?>)</h4>
 						</div>
 <!--						<a class="btn btn-default pull-right"-->
@@ -38,23 +55,23 @@ div.table1
 <!--								class=""></span> &nbsp; Pick List Projects-->
 <!--						</a>-->
 						<div class="btn-toolbar">
-						<button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#bin1">Bin Project</button>
-						<button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#amazon">Amazon Project</button>
-						<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#pick_list1">Pick List Project</button>
+						<button type="button" class="btn btn-success pull-right" id="bin" data-toggle="modal" data-target="#bin1">Bin Project</button>
+						<button type="button" class="btn btn-info pull-right" id="amazon5" data-toggle="modal" data-target="#amazon">Amazon Project</button>
+						<button type="button" class="btn btn-primary pull-right" id="pick" data-toggle="modal" data-target="#pick_list1">Pick List Project</button>
 <!--						<a class="btn btn-default pull-right "-->
 <!--						   href="--><?php //echo base_url() . 'super_admin_c/upload_pick_list/'?><!--"> <span-->
 <!--								class=""></span> &nbsp; Amazon Project-->
 <!--						</a>-->
 <!--						<div class="panel-body">-->
 <!--							<div class="col-md-2 col-xs-6 col-sm-3">-->
-								<select class="btn btn-default pull-left pfilter" id="" name="pfilter">
+								<select class="btn btn-default pull-left pfilter" id="fltr" name="pfilter">
 									<option>Filter project</option>
 									<option value="1">All</option>
 									<option value="2">Ended</option>
 									<option value="3">Running</option>
 								</select>
 						</div>
-							<br>
+						<br>
 
 <!--       --><?php
 //

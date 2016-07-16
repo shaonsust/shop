@@ -1,6 +1,17 @@
 <?php
 include 'header.php';
 ?>
+<style>
+	@media only screen and (max-width: 550px) {
+		#back, #erp, #ep, #dp, #anb {
+			width: 99%;
+			font-size: 13px;
+		}
+		table {
+			font-size: 13px;
+		}
+	}
+</style>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
@@ -13,15 +24,15 @@ include 'header.php';
 						</div>
                     <?php if (($details->pick_list == 0)) { ?>
 						<div class="btn-toolbar">
-						<a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
+						<a class="btn btn-info pull-left" id="back" href="#" onclick="window.history.back();">Go back</a>
 							<?php if($details->status == 1) { ?>
-								<a class="btn btn-danger pull-left" href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $pid ?>">End Project</a>
+								<a class="btn btn-danger pull-left" id="erp" href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $pid ?>">End Project</a>
 							<?php } else { ?>
-								<a class="btn btn-success pull-left" href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $pid ?>">Run Project</a>
+								<a class="btn btn-success pull-left" id="erp" href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $pid ?>">Run Project</a>
 							<?php } ?>
-						<a class="btn btn-primary pull-left" href="<?php echo base_url() . 'super_admin_c/edit_pro/' . $pid ?>">Edit Project</a>
-						<a class="btn btn-danger pull-left" href="<?php echo base_url() . 'super_admin_c/delete_projects/' . $pid ?>" onclick="return CheckDelete()">Delete Project</a>
-						<button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#new_bin">Add New Bin</button>
+						<a class="btn btn-primary pull-left" id="ep" href="<?php echo base_url() . 'super_admin_c/edit_pro/' . $pid ?>">Edit Project</a>
+						<a class="btn btn-danger pull-left" id="dp" href="<?php echo base_url() . 'super_admin_c/delete_projects/' . $pid ?>" onclick="return CheckDelete()">Delete Project</a>
+						<button type="button" class="btn btn-success pull-right" id="anb" data-toggle="modal" data-target="#new_bin">Add New Bin</button>
 						</div>
                     <?php }
                     else if(($details->status == 1) && ($details->pick_list == 1))

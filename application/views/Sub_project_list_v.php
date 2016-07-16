@@ -14,6 +14,15 @@ include 'header.php';
     {
         color: #000;
     }
+    @media only screen and (max-width: 995px) {
+        #back, #erp, #ep, #dp, #fir, #fbr, #amz {
+            width: 99%;
+            font-size: 13px;
+        }
+        table {
+            font-size: 13px;
+        }
+    }
 </style>
 <div class="container">
     <div class="row">
@@ -33,21 +42,21 @@ include 'header.php';
 <!--                                class=""></span> &nbsp; Amazon Project-->
 <!--                        </a>-->
                         <div class="btn-toolbar">
-                        <a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
+                        <a class="btn btn-info pull-left" id="back" href="#" onclick="window.history.back();">Go back</a>
                             <?php if($details->status == 1) { ?>
-                                <a class="btn btn-danger pull-left" href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $pid ?>">End Project</a>
+                                <a class="btn btn-danger pull-left" id="erp" href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $pid ?>">End Project</a>
                             <?php } else { ?>
-                                <a class="btn btn-success pull-left" href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $pid ?>">Run Project</a>
+                                <a class="btn btn-success pull-left" id="erp" href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $pid ?>">Run Project</a>
                             <?php } ?>
-                        <a class="btn btn-info pull-left" href="<?php echo base_url() . 'super_admin_c/edit_pro/' . $pid ?>">Edit Project</a>
-                        <a class="btn btn-danger pull-left" href="<?php echo base_url() . 'super_admin_c/delete_projects/' . $pid ?>" onclick="return CheckDelete()">Delete Project</a>
-                        <a class="btn btn-primary pull-right" href="<?php echo base_url() . 'amazon_c/amazon_full_item_report/'. $pid?>">
+                        <a class="btn btn-info pull-left" id="ep" href="<?php echo base_url() . 'super_admin_c/edit_pro/' . $pid ?>">Edit Project</a>
+                        <a class="btn btn-danger pull-left" id="dp" href="<?php echo base_url() . 'super_admin_c/delete_projects/' . $pid ?>" onclick="return CheckDelete()">Delete Project</a>
+                        <a class="btn btn-primary pull-right" id="fir" href="<?php echo base_url() . 'amazon_c/amazon_full_item_report/'. $pid?>">
                             <span class=""></span> &nbsp; Full Item Report
                         </a>
-                        <a class="btn btn-success pull-right" href="<?php echo base_url() . 'amazon_c/amazon_full_box_report/'. $pid?>">
+                        <a class="btn btn-success pull-right" id="fbr" href="<?php echo base_url() . 'amazon_c/amazon_full_box_report/'. $pid?>">
                             <span class=""></span> &nbsp; Full Box Report
                         </a>
-                        <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#amazon">Amazon Project</button>
+                        <button type="button" class="btn btn-info pull-right" id="amz" data-toggle="modal" data-target="#amazon">Amazon Project</button>
                         </div>
                         <div class="panel-body">
                             <?php
