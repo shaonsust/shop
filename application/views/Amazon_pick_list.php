@@ -195,7 +195,7 @@ $(document).ready(function(){
 <script>
 	function edit_value(id, test)
 	{
-		var replace = $('<input name="temp" id="temp">');
+		var replace = $('<input name="temp" id="temp" width="15%">');
 		var enem = $("#in_" + id);
 		enem.hide();
 

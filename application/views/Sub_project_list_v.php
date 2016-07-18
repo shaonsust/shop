@@ -69,7 +69,7 @@ include 'header.php';
                         </div>
                         <div class="box-body" align="center">
                             <div class="table-responsive" style="width: 100% !important">
-                                <table id="tb1" class="table table-bordered dataTable "
+                                <table id="tb1" class="table table1 table-bordered dataTable "
                                        cellspacing="0" width="100%">
                                     <thead>
                                     <tr>

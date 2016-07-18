@@ -2,6 +2,9 @@
 include 'header.php';
 ?>
 <style>
+	.table1 td{
+		color: #000;
+	}
 	@media only screen and (max-width: 550px) {
 		#back, #erp, #ep, #dp, #anb {
 			width: 99%;
@@ -78,7 +81,7 @@ include 'header.php';
 						<div class="box-body">
 							<div class="table-responsive" style="width: 100% !important">
 								<table id="table"
-									class="table table-bordered table-hover table-striped dataTable "
+									class="table table1 table-bordered table-hover table-striped dataTable "
 									cellspacing="0" width="100%">
 									<thead>
 										<tr>									
