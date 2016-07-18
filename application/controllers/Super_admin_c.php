@@ -529,9 +529,16 @@ class Super_admin_c extends CI_Controller {
 	    		$val = $this->Super_admin_c_model->count_barcode($cdata['barcode'], $cdata['pid']);
 	    		$val1 = $val->qty_scaned;
 	    		$val2 = $val->qty;
-	    		if($val1 === $val2)
+                $dat['sc'] = $val->qty_scaned;
+                $dat['qnt'] = $val->qty;
+                $dat['sku'] = $val->sku;
+	    		if($val1 == $val2)
 	    		{
 	    			$this->Super_admin_c_model->update_picklist_status($cdata['barcode'], $cdata['pid']);
+                    $val6 = $val = $this->Super_admin_c_model->picklist1($val5->id, $cdata['pid']);
+                    $dat['sc'] = $val6->qty_scaned;
+                    $dat['qnt'] = $val6->qty;
+                    $dat['sku'] = $val6->sku;
 	    		}
 	    		$dat['pid'] = $pid;
 	    		$dat['flag'] = 0;

@@ -1,0 +1,74 @@
+td{
+    color:white;
+}
+.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
+    background-color: #550055;
+    color:#eeeeee;
+}
+#count{
+    width: 350px;
+    margin: 20px auto;
+}
+#first1{
+    width: 120px;
+    float: left;
+}
+#first{
+    width: 90%;
+    height: 90%;
+    border: 1px solid #9d9d9d;
+    font-size: 35px;
+    padding: 22px;
+}
+#second1{
+    width: 120px;
+    float: right;
+}
+#second{
+    width: 90%;
+    height: 90%;
+    border: 1px solid #9d9d9d;
+    font-size: 35px;
+    padding: 22px;
+}
+#clear{
+    clear: both;
+}
+#count p, h1{
+    text-align: center;
+}
+
+@media (max-width: 450px) {
+#count{
+    width: 250px;
+    margin: 20px auto;
+}
+#first1{
+    width: 120px;
+    float: left;
+}
+#first{
+    width: 90%;
+    height: 90%;
+    border: 1px solid #9d9d9d;
+    font-size: 35px;
+    padding: 22px;
+}
+#second1{
+    width: 120px;
+    float: right;
+}
+#second{
+    width: 90%;
+    height: 90%;
+    border: 1px solid #9d9d9d;
+    font-size: 35px;
+    padding: 22px;
+}
+#clear{
+    clear: both;
+}
+#count p, h1{
+    text-align: center;
+}
+}

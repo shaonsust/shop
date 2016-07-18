@@ -1,7 +1,12 @@
 <?php
 include 'header.php';
 ?>
-
+<style>
+	td
+	{
+		color: #000;
+	}
+</style>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
@@ -15,7 +20,7 @@ include 'header.php';
 						<div class="box-body" align = "center">
 							<div class="table-responsive" style="width: 100% !important">
 								<table id="table"
-									class="table table-bordered table-hover table-striped dataTable "
+									class="table table-bordered dataTable "
 									cellspacing="0" width="100%">
 									<thead>
 										<tr>

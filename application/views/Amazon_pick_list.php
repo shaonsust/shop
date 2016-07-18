@@ -1,15 +1,7 @@
 <?php
 include 'header.php';
+//include 'css/Amazon_pick_list.css';
 ?>
-<style>
-td{
-color:white;
-}
-.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
-	background-color: #550055;
-	color:#eeeeee;
-}
-</style>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
@@ -39,7 +31,24 @@ color:white;
 						}
 						?> 
 			        </div>			       
-			      </div>
+			     </div>
+						<br>
+				<div id="count">
+					<p>Current SKU</p>
+					<h1><?php if(isset($sku)) echo $sku; ?></h1>
+
+					<div id="first1">
+						<p>QTY Required</p>
+						<div id="first"><?php if(isset($qnt)) echo $qnt; else echo "0";?></div>
+					</div>
+
+					<div id="second1">
+						<p>QTY Scanned</p>
+						<div id="second"><?php if(isset($sc)) echo $sc; else echo "0";?></div>
+					</div>
+
+					<div id="clear"></div>
+				</div>
             
             <div class="modal fade" id="myModal" role="dialog">
 			    <div class="modal-dialog">
@@ -98,13 +107,14 @@ color:white;
 																				foreach ( $list as $c ) 
 
 																				{
+																					$qqq = $c['qty'];
 																					
 																					?>
                         
-                        <tr <?php if($c['qty'] === $c['qty_scaned']) { ?> bgcolor = "#076403" <?php  } else { ?> bgcolor = "#e60000" <?php }?>>
+                        <tr <?php if(trim($c['qty']) <= trim($c['qty_scaned'])) { ?> bgcolor = "#076403" <?php  } else { ?> bgcolor = "#e60000" <?php }?>>
 											<td><?php  echo $c['sku']; ?></td>
 												<td><?php echo $c['barcode']; ?></td>
-												<td><?php echo $c['qty_scaned']; ?></td>
+												<td onclick="edit_value(<?php echo $c['id']; ?>, <?php echo $qqq; ?>)" id ="scan_<?php echo $c['id']?>"><div id ="in_<?php echo $c['id'];?>"><?php echo $c['qty_scaned']; ?></div></td>
 												<td><?php echo $c['qty']; ?></td>
 											<!-- <td><?php //if ($c['status']==1){ echo "Running";} else{ echo"Ended";}?><a href="<?php //echo base_url() . 'super_admin_c/change_project_status/' . $c['id'] ?>">(change)</a></td> -->																			
 										</tr>
@@ -181,4 +191,31 @@ $(document).ready(function(){
 		window.location.replace("<?php echo base_url() ?>Amazon_c/pick_list/" + pid + "/" + spid);
 	});
 });
+</script>
+<script>
+	function edit_value(id, test)
+	{
+		var replace = $('<input name="temp" id="temp">');
+		var enem = $("#in_" + id);
+		enem.hide();
+
+		$('#scan_' + id).append(replace);
+		replace.focus();
+
+		replace.blur(function () {
+			var val = $(this).val();
+			if(val != ''){
+				$.ajax({
+					type : "post",
+					url : "<?php echo base_url() ?>Amazon_c/update_pick_list",
+					data : {id : id, val : val, cqty : test},
+					cache : false
+				}).done(function (html) {
+					enem.text(html);
+				});
+			}
+			$(this).remove();
+			enem.show();
+		});
+	}
 </script>

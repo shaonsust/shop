@@ -124,7 +124,7 @@ class Amazon_c extends CI_Controller
                     $list['user_id'] = $this->session->userdata('user_id');
                     $list['created_date'] = date("Y-m-d");
                     $list['updated_date'] = date("Y-m-d");
-                    $list['status'] = 1;
+                    $list['status'] = 0;
                     $pl = $this->Amazon_model->insert('pick_list', $list);
                 }
 
@@ -277,7 +277,7 @@ class Amazon_c extends CI_Controller
     {
         $cdata['pid'] = $pid;
         $cdata['spid'] = $spid;
-        $cdata['barcode'] = $this->input->post('barcode');
+        $cdata['barcode'] = trim($this->input->post('barcode'));
 //     	$cdata['bar_no'] = $this->input->post('bar_no');
 //     	$cdata['box_id'] = $this->input->post('box_id');
         $cdata['user_id'] = $this->session->userdata('user_id');
@@ -293,16 +293,31 @@ class Amazon_c extends CI_Controller
 //     	die();
         if($val5)
         {
-            if(($val5->qty) > ($val5->qty_scaned))
+            if(trim($val5->qty) > trim($val5->qty_scaned))
             {
                 $this->Super_admin_c_model->update_box($bid);
                 $this->Amazon_model->update_pick($cdata['barcode'], $spid);
                 $val = $this->Amazon_model->count_barcode($cdata['barcode'], $cdata['spid']);
                 $val1 = $val->qty_scaned;
                 $val2 = $val->qty;
-                if($val1 === $val2)
+
+                $dat['sc'] = trim($val->qty_scaned);
+                $dat['qnt'] = trim($val->qty);
+                $dat['sku'] = trim($val->sku);
+                if(trim($val1) == trim($val2))
                 {
                     $this->Amazon_model->update_picklist_status($cdata['barcode'], $cdata['spid']);
+                    $val6 = $this->Amazon_model->picklist1(trim($val5->id), $cdata['pid'], $cdata['spid']);
+                    if($val6) {
+                        $dat['sc'] = trim($val6->qty_scaned);
+                        $dat['qnt'] = trim($val6->qty);
+                        $dat['sku'] = trim($val6->sku);
+                    }
+                    else{
+                        $dat['sc'] = 0;
+                        $dat['qnt'] = 0;
+                        $dat['sku'] = '';
+                    }
                 }
                 $dat['pid'] = $pid;
                 $dat['spid'] = $spid;
@@ -692,7 +707,7 @@ class Amazon_c extends CI_Controller
                             $list['user_id'] = $this->session->userdata('user_id');
                             $list['created_date'] = date("Y-m-d");
                             $list['updated_date'] = date("Y-m-d");
-                            $list['status'] = 1;
+                            $list['status'] = 0;
                             $pl = $this->Amazon_model->insert('pick_list', $list);
                         }
                         $row++;
@@ -707,5 +722,16 @@ class Amazon_c extends CI_Controller
 //                redirect(base_url().'amazon_c/sub_project/'.$pid.'/'.$flag,refresh);
                     $this->sub_project($pid, $flag);
                 }
+    }
+
+    function update_pick_list()
+    {
+        $id = $_POST['id'];
+        $val = $_POST['val'];
+        $qty = $_POST['cqty'];
+        $this->load->model("Amazon_model");
+        $this->Amazon_model->update_pick_list($id, $val, 'pick_list');
+        if($val <= $qty) echo $val;
+        else echo $qty;
     }
 }

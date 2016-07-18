@@ -284,9 +284,18 @@ class Super_admin_c_model extends CI_Model {
     
     public function count_barcode($barcode, $pid) 
     {
-    	$result = $this->db->query("select qty_scaned, qty, barcode from pick_list where barcode = '$barcode' and pid = '$pid'");
+    	$result = $this->db->query("select sku, qty_scaned, qty, barcode from pick_list where barcode = '$barcode' and pid = '$pid'");
 //     	$result = $this->db->count_all_results('pick_list');
     	return $result->row();
+    }
+
+    function picklist1($id, $pid)
+    {
+        $id = $id + 1;
+//        $result = $this->db->query("select * from pick_list where barcode = '$barcode' and pid = '$pid'");
+        $this->db->select('*')->from('pick_list')->where(array('id'=>$id, 'pid'=>$pid));
+        $result = $this->db->get();
+        return $result->row() ;
     }
     
     public function box_no($pid)

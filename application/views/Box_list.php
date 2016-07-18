@@ -1,6 +1,11 @@
 <?php
 include 'header.php';
 ?>
+<style>
+	td{
+		color : #000000;
+	}
+</style>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">

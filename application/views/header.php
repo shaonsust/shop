@@ -19,6 +19,7 @@ if (empty($user_id) || empty($user_role))
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/Amazon_pick_list.css">
         
 
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-2.2.3.min.js"></script>

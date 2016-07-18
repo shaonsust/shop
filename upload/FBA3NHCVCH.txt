@@ -1,0 +1,33 @@
+Shipment ID	FBA3NHCVCH
+Name	FBA (6/1/16 3:23 PM) - 2
+Plan ID	PLN9HY3YJ
+Ship To	Amazon.com, 705 Boulder Drive, Breinigsville, PA, US, 18031
+Total SKUs	24
+Total Units	30
+Pack list	1 of 1
+
+Merchant SKU	Title	ASIN	FNSKU	external-id	Condition	Who will prep?	Prep Type	Who will label?	Shipped
+1007-L-ST13	Popana Print Tunic Top Large ST13 - Made In USA	B015DF8ETA	X000UT62HH		New	"--"	"--"	Merchant	1
+1007-L-ST17	Popana Print Tunic Top Large ST17 - Made In USA	B015YRK2VU	X000VLNNML		New	"--"	"--"	Merchant	2
+1007-L-ST42	Popana Print Tunic Top Large ST42 - Made In USA	B01881LGUA	X000WNIO4P		New	"--"	"--"	Merchant	2
+1007-L-ST43	Popana Print Tunic Top Large ST43 - Made In USA	B01881LJI4	X000WNIO4Z		New	"--"	"--"	Merchant	1
+1007-M-ST17	Popana Print Tunic Top Medium ST17 - Made In USA	B015YRK18E	X000VLNNV7		New	"--"	"--"	Merchant	2
+1007-S-Black	Popana Print Tunic Top Small Black - Made In USA	B016P3DERQ	X000VZ55IH		New	"--"	"--"	Merchant	2
+1010-L-Navy	Popana Lose Fit Long Tunic Tank Top Large in Navy - Made In USA	B00ZDYHRAE	X000SLO0AD		New	"--"	"--"	Merchant	1
+1011-L-Navy	Popana Mid Length High Waist Women's Pencil Skirt Large In Navy - Made In USA	B01B3MX6HC	X000Y4UJUT		New	"--"	"--"	Merchant	1
+1015-L-Navy	Popana Asymmetric Sleeveless Cardigan - Large Navy Made In USA	B01B8F52T4	X000Y8581Z		New	"--"	"--"	Merchant	1
+1015-M-Black	Popana Asymmetric Sleeveless Cardigan - Medium Black Made In USA	B01B8F4XA8	X000Y8584R		New	"--"	"--"	Merchant	1
+1015-XL-Brown	Popana Asymmetric Sleeveless Cardigan - XL Brown Made In USA	B01B8F538E	X000Y8580L		New	"--"	"--"	Merchant	2
+1015-XL-Toffee	Popana Asymmetric Sleeveless Cardigan - XL Toffee Made In USA	B01B8F5CH6	X000Y857Y3		New	"--"	"--"	Merchant	1
+HR-L-Teal	Popana Modern Harem Yoga Palazzo Pants Hybrid Large in Teal - Made In USA	B00ZV7MR26	X000SOW2PF		New	"--"	"--"	Merchant	1
+HR-L-Toffee	Popana Harem Yoga Palazzo Pants Pants Large in Toffee - Made In USA	B00PKOD2XI	X000OXIO6L		New	"--"	"--"	Merchant	2
+HR-M-HeathGray	Popana Harem Yoga Palazzo Pants Pants Medium in Heathergray - Made In USA	B00PKOD8XM	X000OXIO6V		New	"--"	"--"	Merchant	1
+HR-M-Toffee	Popana Harem Yoga Palazzo Pants Pants Medium in Toffee - Made In USA	B00PKODE3G	X000OXIO5R		New	"--"	"--"	Merchant	1
+HR-S-Black	Popana Harem Yoga Palazzo Pants Pants Small in Black - Made In USA	B00PKOCU0E	X000OXIO6B		New	"--"	"--"	Merchant	1
+PL-XL-BLACK	Popana Super Soft Solid Palazzo Pants XL in Black - Made In USA	B00JSAUTF4	X000L93DBT		New	"--"	"--"	Merchant	2
+PLP-L-ST02	Popana Damask Palazzo Pants Large - Made In USA	B00M8KBCQ6	X000MRRXKR		New	"--"	"--"	Merchant	1
+PLP-L-ST25	Popana Damask Palazzo Pants - Made In USA , ST259(Black) , Large	B00S6YNHD4	X000PSJWD9		New	"--"	"--"	Merchant	1
+PLP-L-ST26	Popana Damask Palazzo Pants - Made In USA	B00S6YLIVM	X000PSJWHP		New	"--"	"--"	"--"	0
+PLP-S-BLACK	Popana Damask Palazzo Pants - Made In USA black, small	B00J3B0MEG	X000KP0XHV		New	"--"	"--"	Merchant	1
+POPSKT-Olive-Medium	Popana Super Soft Maxi Skirt Medium in Olive - Made In USA	B00JXVKW14	X000LAHKQH		New	"--"	"--"	Merchant	1
+PS-2X-NAVY	Popana Regular and Plus Size Comfortable and Versatile Maxi-Skirt 2X in Navy - Made in USA	B00GT3K3FE	X000J3M0QL		New	"--"	"--"	Merchant	1

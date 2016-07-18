@@ -112,6 +112,15 @@ class Amazon_model extends CI_Model
         return $result->row() ;
     }
 
+    function picklist1($id, $pid, $spid)
+    {
+        $id = $id + 1;
+//        $result = $this->db->query("select * from pick_list where barcode = '$barcode' and pid = '$pid'");
+        $this->db->select('*')->from('pick_list')->where(array('id'=>$id, 'pid'=>$pid, 'spid'=>$spid));
+        $result = $this->db->get();
+        return $result->row() ;
+    }
+
     function update_pick($barcode, $spid)
     {
         $this->db->query("update pick_list set qty_scaned = qty_scaned + 1 where barcode = '$barcode' and spid = '$spid'");
@@ -119,7 +128,7 @@ class Amazon_model extends CI_Model
 
     public function count_barcode($barcode, $spid)
     {
-        $result = $this->db->query("select qty_scaned, qty, barcode from pick_list where barcode = '$barcode' and spid = '$spid'");
+        $result = $this->db->query("select sku, qty_scaned, qty, barcode from pick_list where barcode = '$barcode' and spid = '$spid'");
 //     	$result = $this->db->count_all_results('pick_list');
         return $result->row();
     }
@@ -133,5 +142,10 @@ class Amazon_model extends CI_Model
     {
         $result = $this->db->query("select a.sku, b.box_name, b.barcode, count(b.barcode) as cbarcode from pick_list a inner join box_report b on a.id = b.pl_id where a.pid = '$pid' group by b.barcode, b.box_name order by b.box_name;");
         return $result->result();
+    }
+
+    function update_pick_list($id, $val, $table)
+    {
+        $this->db->query("update $table set qty_scaned = '$val' where id = '$id'");
     }
 }
