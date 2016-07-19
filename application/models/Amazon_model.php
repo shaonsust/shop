@@ -92,7 +92,7 @@ class Amazon_model extends CI_Model
 
     public function select_list($pid, $spid)
     {
-        $this->db->select()->from('pick_list')->where(array('pid'=>$pid, 'spid'=>$spid))->order_by('status', 'asc');
+        $this->db->select()->from('pick_list')->where(array('pid'=>$pid, 'spid'=>$spid))->order_by('id asc', 'status asc');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -148,4 +148,14 @@ class Amazon_model extends CI_Model
     {
         $this->db->query("update $table set qty_scaned = '$val' where id = '$id'");
     }
+
+    function picklist2($id, $pid, $spid)
+    {
+        $id = $id + 1;
+//        $result = $this->db->query("select * from pick_list where barcode = '$barcode' and pid = '$pid'");
+        $this->db->select('*')->from('pick_list')->where(array('pid'=>$pid, 'spid'=>$spid))->order_by('id', 'asc');
+        $result = $this->db->get();
+        return $result->result() ;
+    }
+
 }

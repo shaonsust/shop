@@ -2,6 +2,17 @@
 include 'header.php';
 //include 'css/Amazon_pick_list.css';
 ?>
+<style>
+	.inp{
+		border: none 0px;
+		padding: 5px;
+		height: 35px;
+		background: rgba(0, 0, 0, 0);
+	}
+	.tr1 td.scan{
+		padding: 0px;
+	}
+</style>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
@@ -90,7 +101,7 @@ include 'header.php';
 						<div class="box-body" align = "center">
 							<div class="table-responsive" style="width: 100% !important">
 								<table id="table"
-									class="table table-bordered table-hover dataTable "
+									class="table table-bordered table-hover  dataTable "
 									cellspacing="0" width="100%">
 									<thead>
 										<tr>
@@ -111,10 +122,14 @@ include 'header.php';
 																					
 																					?>
                         
-                        <tr <?php if(trim($c['qty']) <= trim($c['qty_scaned'])) { ?> bgcolor = "#076403" <?php  } else { ?> bgcolor = "#e60000" <?php }?>>
+                        <tr class="tr1" <?php if(trim($c['qty']) <= trim($c['qty_scaned'])) { ?> bgcolor = "#076403" <?php  } else { ?> bgcolor = "#e60000" <?php }?>>
 											<td><?php  echo $c['sku']; ?></td>
 												<td><?php echo $c['barcode']; ?></td>
-												<td onclick="edit_value(<?php echo $c['id']; ?>, <?php echo $qqq; ?>)" id ="scan_<?php echo $c['id']?>"><div id ="in_<?php echo $c['id'];?>"><?php echo $c['qty_scaned']; ?></div></td>
+												<td class="scan" onclick="edit_value(<?php echo $c['id']; ?>,<?php echo $qqq; ?>)"
+													id ="scan_<?php echo $c['id']?>">
+															<input type="text" class="inp" id ="in_<?php echo $c['id'];?>"
+														   value="<?php echo $c['qty_scaned']; ?>" readonly="readonly">
+												</td>
 												<td><?php echo $c['qty']; ?></td>
 											<!-- <td><?php //if ($c['status']==1){ echo "Running";} else{ echo"Ended";}?><a href="<?php //echo base_url() . 'super_admin_c/change_project_status/' . $c['id'] ?>">(change)</a></td> -->																			
 										</tr>
@@ -158,6 +173,7 @@ function CheckDelete()
     $(document).ready(function () {
         var flag = <?php echo $flag; ?>;
 //         alert(flag1);
+		if(flag == '') flag = 0;
         if(flag == 1)
         {
             alert("Barcode is not matched");
@@ -197,13 +213,16 @@ $(document).ready(function(){
 	{
 		var replace = $('<input name="temp" id="temp" width="15%">');
 		var enem = $("#in_" + id);
-		enem.hide();
+		enem.attr('readonly', false);
+		enem.focus();
+		var temp = enem.val();
 
-		$('#scan_' + id).append(replace);
-		replace.focus();
-
-		replace.blur(function () {
+		enem.blur(function () {
 			var val = $(this).val();
+			var pid = <?php echo $pid;?>;
+			var spid = <?php echo $spid;?>;
+
+			var bid = <?php echo $bdetails->box_id; ?>;
 			if(val != ''){
 				$.ajax({
 					type : "post",
@@ -211,11 +230,12 @@ $(document).ready(function(){
 					data : {id : id, val : val, cqty : test},
 					cache : false
 				}).done(function (html) {
-					enem.text(html);
+					enem.val(html);
 				});
 			}
-			$(this).remove();
-			enem.show();
+			else enem.val(temp);
+			enem.attr('readonly', true);
+//			window.location.replace("<?php //echo base_url() ?>//Amazon_c/update_pick_list/" + id + "/" + val + "/" + test + "/" + pid + "/" + spid + "/" + bid);
 		});
 	}
 </script>

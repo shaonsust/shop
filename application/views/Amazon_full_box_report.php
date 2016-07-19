@@ -2,6 +2,9 @@
 include 'header.php';
 ?>
 <style>
+    .table1 td{
+        color: #000000;
+    }
     @media only screen and (max-width: 995px) {
         #back, #fir, #fbr, #amz {
             width: 99%;
@@ -48,7 +51,7 @@ include 'header.php';
                         <div class="box-body" align="center">
                             <!--*******************************************Sub project Table Start Here************************************************-->
                             <div class="table-responsive" style="width: 100% !important">
-                                <table id="tb1" class="table table-bordered dataTable "
+                                <table id="tb1" class="table table1 table-bordered dataTable "
                                        cellspacing="0" width="100%">
                                     <thead>
                                     <tr>
@@ -80,7 +83,7 @@ include 'header.php';
 
                             <!--*******************************************Amazon Full Box project Report Start Here************************************************-->
                             <div class="table-responsive" style="width: 100% !important">
-                                <table id="tb2" class="table table-bordered dataTable "
+                                <table id="tb2" class="table table1 table-bordered dataTable "
                                        cellspacing="0" width="100%">
                                     <thead>
                                     <tr>

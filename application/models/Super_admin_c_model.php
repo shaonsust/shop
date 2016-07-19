@@ -81,9 +81,18 @@ class Super_admin_c_model extends CI_Model {
     
     public function select_list($pid)
     {
-    	$this->db->select()->from('pick_list')->where('pid', $pid)->order_by('status', 'asc');
+    	$this->db->select()->from('pick_list')->where('pid', $pid)->order_by('id asc', 'status asc');
     	$query = $this->db->get();
     	return $query->result_array();
+    }
+
+    function picklist2($id, $pid)
+    {
+        $id = $id + 1;
+//        $result = $this->db->query("select * from pick_list where barcode = '$barcode' and pid = '$pid'");
+        $this->db->select('*')->from('pick_list')->where(array('pid'=>$pid))->order_by('id', 'asc');
+        $result = $this->db->get();
+        return $result->result() ;
     }
     
     public function select_box($pid)

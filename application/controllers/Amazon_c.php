@@ -307,11 +307,16 @@ class Amazon_c extends CI_Controller
                 if(trim($val1) == trim($val2))
                 {
                     $this->Amazon_model->update_picklist_status($cdata['barcode'], $cdata['spid']);
-                    $val6 = $this->Amazon_model->picklist1(trim($val5->id), $cdata['pid'], $cdata['spid']);
+                    $val6 = $this->Amazon_model->picklist2(trim($val5->id), $cdata['pid'], $cdata['spid']);
                     if($val6) {
-                        $dat['sc'] = trim($val6->qty_scaned);
-                        $dat['qnt'] = trim($val6->qty);
-                        $dat['sku'] = trim($val6->sku);
+                        foreach ($val6 as $val7) {
+                            if(trim($val7->qty_scaned) != trim($val7->qty)) {
+                                $dat['sc'] = trim($val7->qty_scaned);
+                                $dat['qnt'] = trim($val7->qty);
+                                $dat['sku'] = trim($val7->sku);
+                                break;
+                            }
+                        }
                     }
                     else{
                         $dat['sc'] = 0;
@@ -727,11 +732,30 @@ class Amazon_c extends CI_Controller
     function update_pick_list()
     {
         $id = $_POST['id'];
-        $val = $_POST['val'];
+        $value = $_POST['val'];
         $qty = $_POST['cqty'];
+        if($value > $qty) $value = 0;
         $this->load->model("Amazon_model");
-        $this->Amazon_model->update_pick_list($id, $val, 'pick_list');
-        if($val <= $qty) echo $val;
-        else echo $qty;
+        $this->Amazon_model->update_pick_list($id, $value, 'pick_list');
+        echo $value;
     }
+
+//    function update_pick_list($id, $value, $qty, $pid, $spid, $bid)
+//    {
+////        $id = $_POST['id'];
+////        $value = $_POST['val'];
+////        $qty = $_POST['cqty'];
+//        if($value > $qty) $value = 0;
+//        $this->load->model("Amazon_model");
+//        $this->Amazon_model->update_pick_list($id, $value, 'pick_list');
+////        echo $value;
+//        $dat['pid'] = $pid;
+//        $dat['spid'] = $spid;
+//        $dat['flag'] = 0;
+//// 			$dat['msg'] = "Data inserted successfully";
+//        $this->load->model("Super_admin_c_model");
+//        $dat['bdetails'] = $this->Super_admin_c_model->select_box_id($bid);
+//        $dat['list'] = $this->Amazon_model->select_list($pid, $spid);
+//        $this->load->view('Amazon_pick_list', $dat);
+//    }
 }

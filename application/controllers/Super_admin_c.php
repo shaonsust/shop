@@ -535,10 +535,17 @@ class Super_admin_c extends CI_Controller {
 	    		if($val1 == $val2)
 	    		{
 	    			$this->Super_admin_c_model->update_picklist_status($cdata['barcode'], $cdata['pid']);
-                    $val6 = $val = $this->Super_admin_c_model->picklist1($val5->id, $cdata['pid']);
-                    $dat['sc'] = $val6->qty_scaned;
-                    $dat['qnt'] = $val6->qty;
-                    $dat['sku'] = $val6->sku;
+                    $val6 = $val = $this->Super_admin_c_model->picklist2($val5->id, $cdata['pid']);
+                    if($val6) {
+                        foreach ($val6 as $val7) {
+                            if(trim($val7->qty_scaned) != trim($val7->qty)) {
+                                $dat['sc'] = trim($val7->qty_scaned);
+                                $dat['qnt'] = trim($val7->qty);
+                                $dat['sku'] = trim($val7->sku);
+                                break;
+                            }
+                        }
+                    }
 	    		}
 	    		$dat['pid'] = $pid;
 	    		$dat['flag'] = 0;

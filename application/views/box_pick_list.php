@@ -5,6 +5,15 @@ include 'header.php';
 td{
 color:white;
 }
+.inp{
+	background: rgba(0, 0, 0, 0);
+	border: none;
+	height: 35px;
+	padding: 5px;
+}
+.tr1 td.scan{
+	padding: 0px;
+}
 .table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
 	background-color: #550055;
 	color:#eeeeee;
@@ -121,10 +130,13 @@ color:white;
 																					
 																					?>
                         
-                        <tr <?php if($c['qty'] == $c['qty_scaned']) { ?> bgcolor = "#076403" <?php  } else { ?> bgcolor = "#e60000" <?php }?>>
+                        <tr class="tr1" <?php if($c['qty'] == $c['qty_scaned']) { ?> bgcolor = "#076403" <?php  } else { ?> bgcolor = "#e60000" <?php }?>>
 											<td><?php  echo $c['sku']; ?></td>
 												<td><?php echo $c['barcode']; ?></td>
-												<td onclick="edit_value(<?php echo $c['id']; ?>, <?php echo $qqq; ?>)" id ="scan_<?php echo $c['id']?>"><div id ="in_<?php echo $c['id'];?>"><?php echo $c['qty_scaned']; ?></div></td>
+												<td class="scan" onclick="edit_value(<?php echo $c['id']; ?>, <?php echo $qqq; ?>)"
+													id ="scan_<?php echo $c['id']?>">
+													<input class="inp" id ="in_<?php echo $c['id'];?>" value="<?php echo $c['qty_scaned']; ?>" readonly="readonly">
+												</td>
 												<td><?php echo $c['qty']; ?></td>
 											<!-- <td><?php //if ($c['status']==1){ echo "Running";} else{ echo"Ended";}?><a href="<?php //echo base_url() . 'super_admin_c/change_project_status/' . $c['id'] ?>">(change)</a></td> -->																			
 										</tr>
@@ -204,13 +216,11 @@ $(document).ready(function(){
 	{
 		var replace = $('<input name="temp" id="temp">');
 		var enem = $("#in_" + id);
-//		var cqty = qty;
-		enem.hide();
+		enem.attr('readonly', false);
+		enem.focus();
+		var temp = enem.val();
 
-		$('#scan_' + id).append(replace);
-		replace.focus();
-
-		replace.blur(function () {
+		enem.blur(function () {
 			var val = $(this).val();
 			if(val != ''){
 				$.ajax({
@@ -219,11 +229,11 @@ $(document).ready(function(){
 					data : {id : id, val : val, cqty : test},
 					cache : false
 				}).done(function (html) {
-					enem.text(html);
+					enem.val(html);
 				});
 			}
-			$(this).remove();
-			enem.show();
+			else enem.val(temp);
+			enem.attr('readonly', true);
 		});
 	}
 </script>
