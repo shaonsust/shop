@@ -8,17 +8,14 @@ include 'header.php';
     td a{
         color:white;
     }
-    .table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
-        background-color: #550055;
-        color:#eeeeee;
-    }
+
     @media only screen and (max-width: 500px) {
         #back, #vbl, #vil, #vr {
             width: 99%;
-            font-size: 13px;
+            font-size: 12px;
         }
         table {
-            font-size: 13px;
+            font-size: 12px;
         }
 </style>
 <div class="container">
@@ -31,8 +28,7 @@ include 'header.php';
                             <h4 class="box-title text-center">Amazon Item List
                             </h4>
                         </div>
-
-                        <div class="btn-toolbar">
+                        <div class="btn-toolbar button11">
                             <a class="btn btn-info pull-left" id="back" href="#" onclick="window.history.back();">Go back</a>
                             <a class="btn btn-primary pull-right " id="vil"
                                href="<?php echo base_url() . 'amazon_c/pick_list/' . $pid . '/' . $spid; ?>"> <span
@@ -55,7 +51,7 @@ include 'header.php';
                         <div class="box-body">
                             <div class="table-responsive" style="width: 100% !important">
                                 <table id="table"
-                                       class="table table-bordered table-hover dataTable "
+                                       class="table table-bordered dataTable "
                                        cellspacing="0" width="100%">
                                     <thead>
                                     <tr>

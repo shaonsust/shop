@@ -1,17 +1,35 @@
+body{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 12px;
+}
+
+.modal11{
+    margin: 0 auto 5px;
+}
+
+/*.row{*/
+    /*margin: 0px;*/
+/*}*/
+tr:hover{
+    opacity: .8;
+    transition: background-color .3s,color .15s,box-shadow .3s,opacity 0.3s;
+}
+
 td{
     color:white;
 }
-.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
-    background-color: #550055;
-    color:#eeeeee;
-}
+/*.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {*/
+    /*background-color: #550055;*/
+    /*color:#eeeeee;*/
+/*}*/
 #count{
     width: 350px;
-    margin: 20px auto;
+    margin: 0px auto 20px;
 }
 #first1{
     width: 120px;
     float: left;
+    text-align: center;
 }
 #first{
     width: 90%;
@@ -23,6 +41,7 @@ td{
 #second1{
     width: 120px;
     float: right;
+    text-align: center;
 }
 #second{
     width: 90%;
@@ -38,7 +57,19 @@ td{
     text-align: center;
 }
 
+.panel-body{
+    padding: 0;
+}
+
+.button11{
+    padding: 10px;
+}
+
 @media (max-width: 450px) {
+    body{
+        font-size: 12px;
+        font-family: 'Source Sans Pro', sans-serif;
+    }
 #count{
     width: 250px;
     margin: 20px auto;
@@ -71,4 +102,5 @@ td{
 #count p, h1{
     text-align: center;
 }
+
 }

@@ -6,6 +6,7 @@ include 'header.php';
 td{
 color:white;
 }
+
  .icheckbox_minimal, .iradio_minimal {display: none !important}
 div.table1
 {
@@ -54,7 +55,7 @@ div.table1
 <!--						   href="--><?php //echo base_url();?><!--pick_list_c/create_projects"> <span-->
 <!--								class=""></span> &nbsp; Pick List Projects-->
 <!--						</a>-->
-						<div class="btn-toolbar">
+						<div class="btn-toolbar button11">
 						<button type="button" class="btn btn-success pull-right" id="bin" data-toggle="modal" data-target="#bin1">Bin Project</button>
 						<button type="button" class="btn btn-info pull-right" id="amazon5" data-toggle="modal" data-target="#amazon">Amazon Project</button>
 						<button type="button" class="btn btn-primary pull-right" id="pick" data-toggle="modal" data-target="#pick_list1">Pick List Project</button>
@@ -71,7 +72,6 @@ div.table1
 									<option value="3">Running</option>
 								</select>
 						</div>
-						<br>
 
 <!--       --><?php
 //

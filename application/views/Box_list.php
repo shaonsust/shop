@@ -15,8 +15,10 @@ include 'header.php';
 												<div class="panel-heading">
 							<h4 class="box-title text-center">Pick an Existing Box to Add ( Total Box : <?php echo $box_no;?> )</h4>
 						</div>
-						<a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
-						<button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#myModal">Create New Box</button>
+						<div class="btn-toolbar button11">
+							<a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
+							<button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#myModal">Create New Box</button>
+						</div>
 						<div class="panel-body">
        <?php
 							
@@ -54,7 +56,7 @@ include 'header.php';
 						<div class="box-body" align = "center">
 							<div class="table-responsive" style="width: 100% !important">
 								<table id="table"
-									class="table table-bordered table-hover table-striped dataTable "
+									class="table table-bordered table-striped dataTable "
 									cellspacing="0" width="100%">
 									<thead>
 										<tr>

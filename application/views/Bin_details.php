@@ -20,11 +20,13 @@ include 'header.php';
                     
                          &nbsp;</a></h4>
                     </div>
-                    <a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
-                    <?php if ($details->status == 1) { ?>
-                    <a class="btn btn-default pull-right " href="<?php echo base_url();?>super_admin_c/item/<?php echo $bin->bin_id . '/' . $bin->bin_number ?>">
-                        <span class="fa fa-plus"></span> &nbsp; Add New Item</a>
-                    <?php } ?>
+                    <div class="btn-toolbar button11">
+                        <a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
+                        <?php if ($details->status == 1) { ?>
+                        <a class="btn btn-default pull-right " href="<?php echo base_url();?>super_admin_c/item/<?php echo $bin->bin_id . '/' . $bin->bin_number ?>">
+                            <span class="fa fa-plus"></span> &nbsp; Add New Item</a>
+                        <?php } ?>
+                    </div>
                     <div class="panel-body">
                         
       
@@ -32,7 +34,7 @@ include 'header.php';
             </div>
             <div class="box-body">
                 <div class="table-responsive"style="width:100% !important">
-                <table id="table" class="table table1 table-bordered table-hover table-striped dataTable " cellspacing="0" width="100%">
+                <table id="table tb1" class="table table1 table-bordered dataTable " cellspacing="0" width="100%">
                     <thead>
                     <tr>
                         <th width="20%">Sl.</th>
@@ -68,7 +70,7 @@ include 'header.php';
         </div>
     </div>
 </div>
-<?php echo $pagination; ?>
+<?php //echo $pagination; ?>
 </div>
 <script>
     $(document).ready(function() {
@@ -85,4 +87,14 @@ include 'header.php';
       }
 });
 } );
+</script>
+<script>
+    $(document).ready(function () {
+        $('#tb1').dataTable({
+            bFilter: false,
+            bInfo: false,
+            iDisplayLength: 25,
+            bLengthChange: false
+        });
+    });
 </script>

@@ -16,7 +16,9 @@ include 'header.php';
 												<div class="panel-heading">
 							<h4 class="box-title text-center">Box Report</h4>
 						</div>
-						<a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
+						<div class="btn-toolbar button11">
+							<a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
+						</div>
 						<div class="box-body" align = "center">
 							<div class="table-responsive" style="width: 100% !important">
 								<table id="table"

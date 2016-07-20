@@ -26,7 +26,7 @@ include 'header.php';
                             </h4>
                         </div>
 
-                        <div class="btn-toolbar">
+                        <div class="btn-toolbar button11">
                             <a class="btn btn-info pull-left" id="back" href="#" onclick="window.history.back();">Go back</a>
                             <a class="btn btn-success pull-right " id="vpl"
                                href="<?php echo base_url() . 'super_admin_c/pick_list/' . $pid; ?>"> <span
@@ -49,7 +49,7 @@ include 'header.php';
                         <div class="box-body">
                             <div class="table-responsive" style="width: 100% !important">
                                 <table id="table"
-                                       class="table table1 table-bordered table-hover table-striped dataTable "
+                                       class="table table1 table-bordered table-striped dataTable "
                                        cellspacing="0" width="100%">
                                     <thead>
                                     <tr>

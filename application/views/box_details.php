@@ -8,10 +8,6 @@ include 'header.php';
 	td a{
 		color:white;
 	}
-	.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
-		background-color: #550055;
-		color:#eeeeee;
-	}
 	@media only screen and (max-width: 995px) {
 		#back, #erp, #ep, #dp, #vpl, #vbl, #vr, #expt {
 			width: 99%;
@@ -33,7 +29,7 @@ include 'header.php';
                     </h4>
 						</div>
 
-					<div class="btn-toolbar">
+					<div class="btn-toolbar button11">
 						<a class="btn btn-info pull-left" id="back" href="#" onclick="window.history.back();">Go back</a>
 						<?php if($details->status == 1) { ?>
 							<a class="btn btn-danger pull-left" id="erp" href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $pid ?>">End Project</a>
@@ -63,7 +59,7 @@ include 'header.php';
 						<div class="box-body">
 							<div class="table-responsive" style="width: 100% !important">
 								<table id="table"
-									class="table table-bordered table-hover dataTable "
+									class="table table-bordered dataTable "
 									cellspacing="0" width="100%">
 									<thead>
 										<tr>

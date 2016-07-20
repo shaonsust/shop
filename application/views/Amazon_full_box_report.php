@@ -31,14 +31,16 @@ include 'header.php';
                         <!--                           href="--><?php //echo base_url() . 'super_admin_c/upload_pick_list/'?><!--"> <span-->
                         <!--                                class=""></span> &nbsp; Amazon Project-->
                         <!--                        </a>-->
-                        <a class="btn btn-info pull-left" id="back" href="#" onclick="window.history.back();">Go back</a>
-                        <a class="btn btn-default pull-right" id="fir" href="<?php echo base_url() . 'amazon_c/amazon_full_item_report/'. $pid?>">
-                            <span class=""></span> &nbsp; Full Item Report
-                        </a>
-                        <a class="btn btn-default pull-right" id="fbr" href="<?php echo base_url() . 'amazon_c/amazon_full_box_report/'. $pid?>">
-                            <span class=""></span> &nbsp; Full Box Report
-                        </a>
-                        <button type="button" class="btn btn-default pull-right" id="amz" data-toggle="modal" data-target="#amazon">Amazon Project</button>
+                        <div class="btn-toolbar button11">
+                            <a class="btn btn-info pull-left" id="back" href="#" onclick="window.history.back();">Go back</a>
+                            <a class="btn btn-default pull-right" id="fir" href="<?php echo base_url() . 'amazon_c/amazon_full_item_report/'. $pid?>">
+                                <span class=""></span> &nbsp; Full Item Report
+                            </a>
+                            <a class="btn btn-default pull-right" id="fbr" href="<?php echo base_url() . 'amazon_c/amazon_full_box_report/'. $pid?>">
+                                <span class=""></span> &nbsp; Full Box Report
+                            </a>
+                            <button type="button" class="btn btn-default pull-right" id="amz" data-toggle="modal" data-target="#amazon">Amazon Project</button>
+                        </div>
                         <div class="panel-body">
                             <?php
 

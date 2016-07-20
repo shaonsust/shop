@@ -8,10 +8,16 @@ include 'header.php';
 		padding: 5px;
 		height: 35px;
 		background: rgba(0, 0, 0, 0);
+		width: 100%;
 	}
 	.tr1 td.scan{
 		padding: 0px;
 	}
+
+	.btn123{
+		margin-bottom: 35px;
+	}
+
 </style>
 <div class="container">
 	<div class="row">
@@ -24,17 +30,17 @@ include 'header.php';
 						</div>
 <!-- 						<a class="btn btn-default pull-right" href="<?php echo base_url();?>super_admin_c/show_details"> <span class="fa fa-plus"></span> &nbsp; View Report -->
 <!-- 						</a> -->
-						<a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
+						<div class="btn-toolbar button11"><a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a></div>
 						
 			
             
-			    <div class="modal-dialog">
+			    <div class="modal-dialog modal11">
 			    
-			        <div class="modal-body" style="margin-top:-30px; !important">
+			        <div class="modal-body btn123" style="margin-top:-30px; !important">
 			          <form id="newBoxForm" method="post" action="<?php echo base_url() . 'amazon_c/barcode_calculation/'. $pid . '/' . $bdetails->box_id . '/'. $spid ;?>">
         			<h3 style="text-align: center;"><?php echo $bdetails->box_name; ?></h3>   				            
-        				<input type="text" class="box" id="box" name="barcode" autofocus="true" style="width: 100%; height: 6vh; border-radius: 5px;">
-        				<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal" style="margin-top:10px;">Close Box</button>
+        				<input type="text" class="box" id="box box123" name="barcode" autofocus="true" style="width: 100%; height: 6vh; border-radius: 5px; margin-bottom: 8px;">
+        				<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal" style=" margin-top:0px; height: 6vh">Close Box</button>
         			  </form>
         			   <?php							
 						if (! empty ( $msg )) {
@@ -43,10 +49,9 @@ include 'header.php';
 						?> 
 			        </div>			       
 			     </div>
-						<br>
 				<div id="count">
 					<p>Current SKU</p>
-					<h1><?php if(isset($sku)) echo $sku; ?></h1>
+					<h3 style="margin-top: 5px; text-align: center;"><?php if(isset($sku)) echo $sku; ?></h3>
 
 					<div id="first1">
 						<p>QTY Required</p>
@@ -101,7 +106,7 @@ include 'header.php';
 						<div class="box-body" align = "center">
 							<div class="table-responsive" style="width: 100% !important">
 								<table id="table"
-									class="table table-bordered table-hover  dataTable "
+									class="table table-bordered dataTable "
 									cellspacing="0" width="100%">
 									<thead>
 										<tr>

@@ -174,44 +174,8 @@ class Super_admin_c extends CI_Controller {
        {
         $this->load->model('Super_admin_c_model');
         $data ['details'] = $this->Super_admin_c_model->show_details('projects', $pro_status);
-//         echo "<pre>";
-//         print_r($data['details']);
-//         die();
-
-        $this->load->library('pagination');
-        $config['base_url'] = base_url() . "super_admin_c/show_bin_details/$id/$pro_status/";
-        $config['per_page'] = 5;
-        $config['total_rows'] = $this->Super_admin_c_model->count_item_by_bin_id1('item', $id);
-//        	echo $config['total_rows'];
-//        	die();
-        
-        //config for bootstrap pagination class integration
-        $config['full_tag_open'] = '<ul class="pagination" align="center">';
-        $config['full_tag_close'] = '</ul>';
-        $config['first_link'] = false;
-        $config['last_link'] = false;
-        $config['first_tag_open'] = '<li>';
-        $config['first_tag_close'] = '</li>';
-        $config['prev_link'] = '&laquo';
-        $config['prev_tag_open'] = '<li class="prev">';
-        $config['prev_tag_close'] = '</li>';
-        $config['next_link'] = '&raquo';
-        $config['next_tag_open'] = '<li>';
-        $config['next_tag_close'] = '</li>';
-        $config['last_tag_open'] = '<li>';
-        $config['last_tag_close'] = '</li>';
-        $config['cur_tag_open'] = '<li class="active"><a href="#">';
-        $config['cur_tag_close'] = '</a></li>';
-        $config['num_tag_open'] = '<li>';
-        $config['num_tag_close'] = '</li>';
-        
         $data ['bin'] = $this->Super_admin_c_model->select_bin_details('bin', $id);
-        $data['item_bin'] = $this->Super_admin_c_model->select_item_by_bin_id('item', $id, $config['per_page'], $start);
-        $this->pagination->initialize($config);
-        $data['pagination'] = $this->pagination->create_links();
-//         echo "<pre>";
-//         print_r($data['item_bin']);
-//         die();
+        $data['item_bin'] = $this->Super_admin_c_model->select_item_by_bin_id('item', $id, 3000, $start);
         $data['item_count'] = $this->Super_admin_c_model->count_item_by_bin_id('item', $id);
         $data ['msg'] = "";
         $this->load->view('Bin_details', $data);

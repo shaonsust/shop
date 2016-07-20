@@ -18,8 +18,10 @@ include 'header.php';
 						</div>
 <!-- 						<a class="btn btn-default pull-right" href="<?php echo base_url();?>super_admin_c/show_details"> <span class="fa fa-plus"></span> &nbsp; View Report -->
 <!-- 						</a> -->
-						<a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
-						<button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#myModal">Create New Box</button>
+						<div class="btn-toolbar button11">
+							<a class="btn btn-info pull-left" href="#" onclick="window.history.back();">Go back</a>
+							<button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#myModal">Create New Box</button>
+						</div>
 						
 						<div class="panel-body">
        <?php
@@ -61,7 +63,7 @@ include 'header.php';
 						<div class="box-body" align = "center">
 							<div class="table-responsive" style="width: 100% !important">
 								<table id="table"
-									class="table table1 table-bordered table-hover dataTable "
+									class="table table1 table-bordered dataTable "
 									cellspacing="0" width="100%">
 									<thead>
 										<tr>

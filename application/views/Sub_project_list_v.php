@@ -41,7 +41,7 @@ include 'header.php';
 <!--                           href="--><?php //echo base_url() . 'super_admin_c/upload_pick_list/'?><!--"> <span-->
 <!--                                class=""></span> &nbsp; Amazon Project-->
 <!--                        </a>-->
-                        <div class="btn-toolbar">
+                        <div class="btn-toolbar button11">
                         <a class="btn btn-info pull-left" id="back" href="#" onclick="window.history.back();">Go back</a>
                             <?php if($details->status == 1) { ?>
                                 <a class="btn btn-danger pull-left" id="erp" href="<?php echo base_url() . 'super_admin_c/change_project_status/' . $pid ?>">End Project</a>
