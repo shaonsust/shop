@@ -4,6 +4,19 @@ class Amazon_c extends CI_Controller
     public $aproject = array();
     public $harr = array();
 
+    public function __construct()
+    {
+        parent::__construct();
+
+        $user_id = $this->session->userdata('user_id');
+        $user_role = $this->session->userdata('user_role');
+        $user_name = $this->session->userdata('user_name');
+        $this->load->model('Super_admin_c_model');
+        $this->load->model('Amazon_model');
+        if (empty($user_id) || empty($user_role))
+            redirect('login');
+    }
+
     function check_format()
     {
         if (isset ( $_FILES ['read']['name'] ) && ! empty ( $_FILES ['read']['name'] ))

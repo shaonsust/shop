@@ -1,6 +1,20 @@
 <?php
 class Pick_list_c extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $user_id = $this->session->userdata('user_id');
+        $user_role = $this->session->userdata('user_role');
+        $user_name = $this->session->userdata('user_name');
+        $this->load->model('Super_admin_c_model');
+        $this->load->model('Amazon_model');
+
+        if (empty($user_id) || empty($user_role))
+            redirect('login');
+    }
+
     public function create_projects()
     {
         $this->load->view('Create_projects');
